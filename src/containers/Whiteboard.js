@@ -1,5 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CourseTable from './CourseTable';
 import CourseGrid from './CourseGrid';
 import CourseEditor from './CourseEditor';
@@ -49,12 +52,6 @@ export default class Whiteboard extends React.Component {
                         render={() => <CourseGrid
                                         selectCourse={this.selectCourse}
                                         courses={courses}/>}/>
-                    <Route
-                        path="/course/table"
-                        render={() => <CourseTable courses={courses}/>}/>
-                    <Route
-                        path="/course/grid"
-                        render={() => <CourseGrid courses={courses}/>}/>
                     <Route
                         path="/course/editor/:courseId"
                         render={props => <CourseEditor courses={courses}/>}/>

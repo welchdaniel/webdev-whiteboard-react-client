@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
-import HelloWorld from './components/HelloWorld';
+import WhiteBoard from './containers/Whiteboard';
 
-ReactDOM.render(<HelloWorld/>, document.getElementById('root'));
+ReactDOM.render(<WhiteBoard/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'react-bootstrap';
 import * as serviceWorker from './serviceWorker';
 import WhiteBoard from './containers/Whiteboard';
 

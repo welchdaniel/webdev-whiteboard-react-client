@@ -18,7 +18,7 @@ export default class Whiteboard extends React.Component {
             selectedCourse: initialCourses[0],
             addedCourse: {
                 id: -1,
-                title: 'New Course Title'
+                title: ''
             }
         }
     }
@@ -59,7 +59,7 @@ export default class Whiteboard extends React.Component {
                         <Navbar.Collapse id="webdev-navbar-nav">
                             <Nav className="mr-auto"/>
                             <Form inline>
-                                <FormControl 
+                                <Form.Control 
                                     onChange={this.titleChanged}
                                     value={this.state.addedCourse.title}
                                     type="text" 

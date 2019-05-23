@@ -23,22 +23,22 @@ export default class Whiteboard extends React.Component {
     render() {
         return (
             <Router>
-                <div className="container-fluid">
-                    <Navbar bg="primary" variant="dark" expand="sm" fixed="top">
-                        <Navbar.Brand href="#">Course Manager</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
-                        <Navbar.Collapse id="webdev-navbar-nav">
-                            <Nav className="mr-auto"/>
-                            <Form inline>
-                                <FormControl type="text" placeholder="New Course Title" className="mr-xs-2" />
-                                <Button 
-                                    className=".ml-3"
-                                    variant="danger">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
-                        </Navbar.Collapse>
-                    </Navbar>
+                <Navbar bg="primary" variant="dark" expand="sm" fixed="top">
+                    <Navbar.Brand href="#">Course Manager</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
+                    <Navbar.Collapse id="webdev-navbar-nav">
+                        <Nav className="mr-auto"/>
+                        <Form inline>
+                            <FormControl type="text" placeholder="New Course Title" className="mr-xs-2" />
+                            <Button 
+                                className=".ml-3"
+                                variant="danger">
+                                <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                        </Form>
+                    </Navbar.Collapse>
+                </Navbar>
+                <div className="container-fluid pt-5">
                     <h1>WhiteBoard</h1>
                     <Link to="/course/table">Table</Link>
                     <Link to="/course/grid">Grid</Link>

@@ -8,17 +8,46 @@ import CourseGrid from './CourseGrid';
 import CourseEditor from './CourseEditor';
 import CourseService from '../services/CourseService'
 let courseService = CourseService.getInstance();
-const courses = courseService.findAllCourses();
+const initialCourses = courseService.findAllCourses();
 
 export default class Whiteboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCourse: courses[0]
+            courses: initialCourses,
+            selectedCourse: initialCourses[0],
+            addedCourse: {
+                id: -1,
+                title: 'New Course Title'
+            }
         }
     }
 
     selectCourse = course => this.setState({selectedCourse:course})
+
+    createCourse = () => {
+        this.setState({
+        courses: [this.state.addedCourse, ...this.state.courses]
+        })
+        console.log(this.state.courses)
+    }
+
+    deleteCourse = (id) => {
+        console.log("delete course" + id);
+        this.setState({
+        courses: this.state.courses.filter(course => course.id !== id)
+        })
+    }
+
+    titleChanged = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            addedCourse: {
+                id: (new Date().getTime()),
+                title: event.target.value
+            }
+        })
+    }
 
     render() {
         return (
@@ -30,8 +59,14 @@ export default class Whiteboard extends React.Component {
                         <Navbar.Collapse id="webdev-navbar-nav">
                             <Nav className="mr-auto"/>
                             <Form inline>
-                                <FormControl type="text" placeholder="New Course Title" className="mr-xs-2" />
+                                <FormControl 
+                                    onChange={this.titleChanged}
+                                    value={this.state.addedCourse.title}
+                                    type="text" 
+                                    placeholder="New Course Title" 
+                                    className="mr-xs-2" />
                                 <Button 
+                                    onClick={this.createCourse}
                                     className=".ml-3"
                                     variant="danger">
                                     <FontAwesomeIcon icon={faPlus} />
@@ -51,16 +86,16 @@ export default class Whiteboard extends React.Component {
                     <Route path="/course/table"
                         render={() => <CourseTable
                                         selectCourse={this.selectCourse}
-                                        courses={courses}/>}/>
+                                        courses={this.state.courses}/>}/>
                     <Route path="/course/grid"
                         render={() => <CourseGrid
                                         selectCourse={this.selectCourse}
-                                        courses={courses}/>}/>
+                                        courses={this.state.courses}/>}/>
                     <Route
                         path="/course/editor/:courseId"
                         render={(props) => <CourseEditor
                                         {...props}
-                                        courses={courses}/>}/>
+                                        courses={this.state.courses}/>}/>
                 </div>
             </Router>
         )

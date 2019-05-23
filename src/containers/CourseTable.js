@@ -5,12 +5,13 @@ const CourseTable = ({courses, selectCourse}) => {
     return(
         <table className="table">
             <tbody>
-            { courses.map((course, key) =>
-                <CourseRow 
-                    selectCourse={selectCourse}
-                    course={course}
-                    key={key}/>
-            )}
+                { courses.map((course, key) =>
+                    <CourseRow 
+                        selectCourse={selectCourse}
+                        course={course}
+                        key={key}/>
+                    )
+                }
             </tbody>
         </table>
     )

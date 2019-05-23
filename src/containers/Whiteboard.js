@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CourseTable from './CourseTable';
 import CourseGrid from './CourseGrid';
 import CourseEditor from './CourseEditor';
-import courses from './courses.json'
+import CourseService from '../services/CourseService'
+let courseService = CourseService.getInstance();
+const courses = courseService.findAllCourses();
 
 export default class Whiteboard extends React.Component {
     constructor(props) {
@@ -16,20 +18,22 @@ export default class Whiteboard extends React.Component {
         }
     }
 
-    selectCourse = course => this.setState({selectCourse:course})
+    selectCourse = course => this.setState({selectedCourse:course})
 
     render() {
         return (
             <Router>
                 <div className="container-fluid">
-                    <Navbar bg="light" expand="sm" fixed="top">
+                    <Navbar bg="primary" variant="dark" expand="sm" fixed="top">
                         <Navbar.Brand href="#">Course Manager</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                        <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
+                        <Navbar.Collapse id="webdev-navbar-nav">
                             <Nav className="mr-auto"/>
                             <Form inline>
                                 <FormControl type="text" placeholder="New Course Title" className="mr-xs-2" />
-                                <Button className=".ml-3">
+                                <Button 
+                                    className=".ml-3"
+                                    variant="danger">
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>
                             </Form>
@@ -54,7 +58,9 @@ export default class Whiteboard extends React.Component {
                                         courses={courses}/>}/>
                     <Route
                         path="/course/editor/:courseId"
-                        render={props => <CourseEditor courses={courses}/>}/>
+                        render={(props) => <CourseEditor
+                                        {...props}
+                                        courses={courses}/>}/>
                 </div>
             </Router>
         )

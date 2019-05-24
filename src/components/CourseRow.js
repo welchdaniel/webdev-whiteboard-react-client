@@ -3,7 +3,7 @@ import {BrowserRouter as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-const CourseRow = ({course, selectCourse}) => {
+const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
         <tr>
             <td>
@@ -20,7 +20,7 @@ const CourseRow = ({course, selectCourse}) => {
                 me
             </td>
             <td>
-                &nbsp;
+                {course.modifiedAt}
             </td>
             <td>
                 &nbsp;
@@ -29,7 +29,9 @@ const CourseRow = ({course, selectCourse}) => {
                 &nbsp;
             </td>
             <td>
-                <FontAwesomeIcon icon={faTrashAlt}/>
+                <FontAwesomeIcon
+                    onClick={() => deleteCourse(course.id)}
+                    icon={faTrashAlt}/>
             </td>
         </tr>
     )

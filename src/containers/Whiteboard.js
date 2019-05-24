@@ -18,7 +18,9 @@ export default class Whiteboard extends React.Component {
             selectedCourse: initialCourses[0],
             addedCourse: {
                 id: -1,
-                title: ''
+                title: '',
+                modifiedAt: '',
+                modules: []
             }
         }
     }
@@ -27,7 +29,10 @@ export default class Whiteboard extends React.Component {
 
     createCourse = () => {
         this.setState({
-        courses: [this.state.addedCourse, ...this.state.courses]
+            courses: [this.state.addedCourse, ...this.state.courses],
+            addedCourse: {
+                title: ''
+            }
         })
         console.log(this.state.courses)
     }
@@ -43,10 +48,26 @@ export default class Whiteboard extends React.Component {
         console.log(event.target.value);
         this.setState({
             addedCourse: {
-                id: (new Date().getTime()),
-                title: event.target.value
+                id: new Date().getTime(),
+                title: event.target.value,
+                modifiedAt: this.getModificationTime(),
+                modules: []
             }
         })
+    }
+
+    getModificationTime = () => {
+        let currDate = new Date();
+        let day = currDate.getDate();
+        let month = currDate.getMonth() + 1;
+        let year = currDate.getFullYear();
+        let hours = currDate.getHours() % 12;
+        let minutes = currDate.getMinutes();
+        let seconds = currDate.getSeconds();
+        let leadingMinutes = (minutes < 10 ? "0" : "");
+        let leadingSeconds = (seconds < 10 ? "0" : "");
+        let fullDate = hours + ':' + leadingMinutes + minutes + ':' + leadingSeconds + seconds + ' ' + month + '/' + day + '/' + year;
+        return(fullDate)
     }
 
     render() {
@@ -64,10 +85,10 @@ export default class Whiteboard extends React.Component {
                                     value={this.state.addedCourse.title}
                                     type="text" 
                                     placeholder="New Course Title" 
-                                    className="mr-xs-2" />
+                                    className="mr-xs-2"
+                                    id="new-course-title" />
                                 <Button 
                                     onClick={this.createCourse}
-                                    className=".ml-3"
                                     variant="danger">
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>
@@ -86,10 +107,12 @@ export default class Whiteboard extends React.Component {
                     <Route path="/course/table"
                         render={() => <CourseTable
                                         selectCourse={this.selectCourse}
+                                        deleteCourse={this.deleteCourse}
                                         courses={this.state.courses}/>}/>
                     <Route path="/course/grid"
                         render={() => <CourseGrid
                                         selectCourse={this.selectCourse}
+                                        deleteCourse={this.deleteCourse}
                                         courses={this.state.courses}/>}/>
                     <Route
                         path="/course/editor/:courseId"

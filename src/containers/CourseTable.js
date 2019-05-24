@@ -1,9 +1,10 @@
 import React from 'react'
 import CourseRow from '../components/CourseRow'
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { faGripHorizontal, faSortAlphaDown, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CourseTable = ({courses, selectCourse}) => {
+const CourseTable = ({courses, selectCourse, deleteCourse}) => {
     return(
         <div className="table-responsive">
             <table className="table">
@@ -16,8 +17,18 @@ const CourseTable = ({courses, selectCourse}) => {
                         <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>
                     </th>
                     <th>Last modified by me</th>
-                    <th><FontAwesomeIcon icon={faGripHorizontal} className="fa-lg"/></th>
-                    <th><FontAwesomeIcon icon={faSortAlphaDown} className="fa-lg"/></th>
+                    <th>
+                        <Link to="/course/grid">
+                            <FontAwesomeIcon 
+                                icon={faGripHorizontal}
+                                className="fa-lg text-dark"/>
+                        </Link>
+                    </th>
+                    <th>
+                        <FontAwesomeIcon 
+                            icon={faSortAlphaDown} 
+                            className="fa-lg"/>
+                    </th>
                     <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -25,6 +36,7 @@ const CourseTable = ({courses, selectCourse}) => {
                     { courses.map((course, key) =>
                         <CourseRow 
                             selectCourse={selectCourse}
+                            deleteCourse={deleteCourse}
                             course={course}
                             key={key}/>
                         )

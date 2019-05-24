@@ -7,8 +7,8 @@ import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-so
 
 const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
-        <tr className="d-flex">
-            <td className="col-5">
+        <tr>
+            <td className="col-sm-5 col-xs-11">
             <Link 
                 to={`/course/edit/${course.id}`}
                 className="text-dark">
@@ -20,16 +20,16 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
                 {course.title}
             </Link>
             </td>
-            <td className="col-2">
+            <td className="col-sm-1 col-xs-0 d-none d-sm-block">
                 me
             </td>
-            <td className="col-2">
+            <td className="col-sm-2 col-xs-0 d-none d-sm-block">
                 {course.modifiedAt}
             </td>
-            <td className="col-2">
+            <td className="col-sm-1 col-xs-0 d-none d-sm-block">
                 &nbsp;
             </td>
-            <td className="col-1">
+            <td className="col-sm-1 col-xs-1">
                 <Dropdown>
                     <Dropdown.Toggle
                         variant="warning">

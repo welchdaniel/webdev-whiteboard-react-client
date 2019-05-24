@@ -9,33 +9,33 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
         <div>
             <table className="table">
                 <thead>
-                <h5 className="d-flex">
-                    <th className="col-5">
+                <tr>
+                    <th className="col-sm-5 col-xs-11">
                         Title
                     </th>
-                    <th className="col-2">
+                    <th className="col-sm-1 col-xs-0 d-none d-sm-block">
                         <a className="pr-2">Owned by</a>
                         <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>
                     </th>
-                    <th className="col-2">
+                    <th className="col-sm-2 col-xs-0 d-none d-sm-block">
                         Last modified
                     </th>
-                    <th className="col-1">
+                    <th className="col-sm-1 col-xs-1">
                         <Link to="/course/grid">
                             <FontAwesomeIcon 
                                 icon={faGripHorizontal}
                                 className="fa-lg text-dark"/>
                         </Link>
                     </th>
-                    <th className="col-1">
+                    <th className="col-sm-1 col-xs-0 d-none d-sm-block">
                         <FontAwesomeIcon 
                                 icon={faSortAlphaDown} 
                                 className="fa-lg"/>
                     </th>
-                    <th className="col-1">
+                    <th className="col-sm-2 col-xs-0 d-none d-sm-block">
                         &nbsp;
                     </th>
-                </h5>
+                </tr>
                 </thead>
                 <tbody>
                     { courses.map((course, key) =>

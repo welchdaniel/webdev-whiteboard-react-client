@@ -111,9 +111,7 @@ export default class Whiteboard extends React.Component {
                                         courses={this.state.courses}/>}/>
                     <Route
                         path="/course/edit/:courseId"
-                        render={(props) => <CourseEditor
-                                        {...props}
-                                        courses={this.state.courses}/>}/>
+                        render={(props) => <CourseEditor selectedCourse={this.state.selectedCourse}/>}/>
                 </div>
             </Router>
         )

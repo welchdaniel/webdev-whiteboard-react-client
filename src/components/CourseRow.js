@@ -7,8 +7,8 @@ import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-so
 
 const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
-        <tr>
-            <td className="col-sm-5 col-xs-11">
+        <tr className="row">
+            <td className="col-sm-5 col-9">
             <Link 
                 to={`/course/edit/${course.id}`}
                 className="text-dark">
@@ -20,16 +20,16 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
                 {course.title}
             </Link>
             </td>
-            <td className="col-sm-1 col-xs-0 d-none d-sm-block">
+            <td className="col-sm-1 col-0 d-none d-sm-block">
                 me
             </td>
-            <td className="col-sm-2 col-xs-0 d-none d-sm-block">
+            <td className="col-sm-2 col-0 d-none d-sm-block">
                 {course.modifiedAt}
             </td>
-            <td className="col-sm-1 col-xs-0 d-none d-sm-block">
+            <td className="col-sm-2 col-0 d-none d-sm-block">
                 &nbsp;
             </td>
-            <td className="col-sm-1 col-xs-1">
+            <td className="col-sm-2 col-3">
                 <Dropdown>
                     <Dropdown.Toggle
                         variant="warning">
@@ -37,7 +37,8 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
                             icon={faPencilAlt}
                             className="mr-1"/>
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu
+                        alignRight>
                         <LinkContainer to={`/course/edit/${course.id}`}>
                         <Dropdown.Item>
                                 <span className="label">

@@ -9,30 +9,30 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
         <div>
             <table className="table">
                 <thead>
-                <tr>
-                    <th className="col-sm-5 col-xs-11">
+                <tr className="row">
+                    <th className="col-sm-5 col-10">
                         Title
                     </th>
-                    <th className="col-sm-1 col-xs-0 d-none d-sm-block">
+                    <th className="col-sm-1 col-0 d-none d-sm-block">
                         <a className="pr-2">Owned by</a>
                         <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>
                     </th>
-                    <th className="col-sm-2 col-xs-0 d-none d-sm-block">
+                    <th className="col-sm-2 col-0 d-none d-sm-block">
                         Last modified
                     </th>
-                    <th className="col-sm-1 col-xs-1">
+                    <th className="col-sm-1 col-2">
                         <Link to="/course/grid">
                             <FontAwesomeIcon 
                                 icon={faGripHorizontal}
                                 className="fa-lg text-dark"/>
                         </Link>
                     </th>
-                    <th className="col-sm-1 col-xs-0 d-none d-sm-block">
+                    <th className="col-sm-1 col-0 d-none d-sm-block">
                         <FontAwesomeIcon 
                                 icon={faSortAlphaDown} 
                                 className="fa-lg"/>
                     </th>
-                    <th className="col-sm-2 col-xs-0 d-none d-sm-block">
+                    <th className="col-sm-2 col-0 d-none d-sm-block">
                         &nbsp;
                     </th>
                 </tr>

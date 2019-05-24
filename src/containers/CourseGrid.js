@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
     return(
         <div className="container-responsive">
-            <h6 className="row mt-3 font-weight-bold">
+            <h6 className="row mt-4 font-weight-bold">
                 <div className="col-sm-7 col-10">Recent Documents</div>
                 <div className="col-sm-2 col-0 d-none d-sm-block">
                     <a className="pr-2">Owned by</a>
@@ -32,15 +32,13 @@ const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
                 </div>
             </h6>
     
-            <div className="row mt-4">
-                {courses.map((course, key) =>
-                    <div className="col-lg-2 col-md-4 col-sm-12">
+            <div className="row card-deck">
+                {courses.map((course) =>
                     <CourseCard 
                         selectCourse={selectCourse}
                         deleteCourse={deleteCourse}
                         course={course}
-                        key={key}/>
-                    </div>
+                        key={course.id}/>
                     )
                 }
             </div>

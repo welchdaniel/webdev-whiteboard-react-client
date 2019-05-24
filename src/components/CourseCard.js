@@ -7,7 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CourseCard = ({course, selectCourse, deleteCourse}) => {
     return(
-        <div className="card" styles={{width: '18rem'}}>
+        <div
+            className="mt-4 col-lg-2 col-md-4 col-sm-12">
+        <div 
+            className="card"
+            styles={{width: '18rem'}}>
             <LinkContainer to={`/course/edit/${course.id}`}>
             <img 
                 className="card-img-top"
@@ -63,6 +67,7 @@ const CourseCard = ({course, selectCourse, deleteCourse}) => {
                         
                     </div>
             </div>
+        </div>
         </div>
     )
 }

@@ -38,12 +38,12 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
                 </tr>
                 </thead>
                 <tbody>
-                    { courses.map((course, key) =>
+                    { courses.map((course) =>
                         <CourseRow 
                             selectCourse={selectCourse}
                             deleteCourse={deleteCourse}
                             course={course}
-                            key={key}/>
+                            key={course.id}/>
                         )
                     }
                 </tbody>

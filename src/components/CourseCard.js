@@ -8,8 +8,10 @@ const CourseCard = ({course, selectCourse, deleteCourse}) => {
     return(
         <div className="card" styles={{width: '18rem'}}>
             
-            <img className="card-img-top"
-                        src="https://picsum.photos/300/200"/>
+            <img 
+                className="card-img-top"
+                src="https://picsum.photos/300/200"
+                alt=""/>
             <div className="card-body">
                     <div className="row">
                         <h5 className="card-title">{course.title}</h5>

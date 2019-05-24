@@ -18,4 +18,16 @@ export default class CourseService {
     findAllCourses = () => {
         return this.courses;
     }
+
+    findCourseById = id => {
+
+    }
+
+    updateCourse = (id, course) => {
+
+    }
+
+    deleteCourse = id => {
+        
+    }
 }

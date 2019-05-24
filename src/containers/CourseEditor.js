@@ -2,7 +2,7 @@ import React from 'react'
 import LessonTabs from '../components/LessonTabs'
 import TopicPills from '../components/TopicPills'
 import ModuleList from '../components/ModuleList'
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 export default class CourseEditor extends React.Component {
     constructor(props) {

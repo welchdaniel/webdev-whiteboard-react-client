@@ -8,9 +8,10 @@ import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-so
 const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
         <tr className="d-flex">
+            <td className="col-5">
             <Link 
-                to={`/course/edit/${course.id}`} 
-                className="col-5 text-dark">
+                to={`/course/edit/${course.id}`}
+                className="text-dark">
                 <span className="label">
                     <FontAwesomeIcon 
                         icon={faFileAlt} 
@@ -18,6 +19,7 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
                 </span>
                 {course.title}
             </Link>
+            </td>
             <td className="col-2">
                 me
             </td>

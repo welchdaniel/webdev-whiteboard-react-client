@@ -65,6 +65,7 @@ export default class Whiteboard extends React.Component {
         let seconds = currDate.getSeconds();
         let leadingMinutes = (minutes < 10 ? "0" : "");
         let leadingSeconds = (seconds < 10 ? "0" : "");
+        hours = (hours == 0 ? 12 : hours);
         let fullDate = hours + ':' + leadingMinutes + minutes + ':' + leadingSeconds + seconds + ' ' + month + '/' + day + '/' + year;
         return(fullDate)
     }

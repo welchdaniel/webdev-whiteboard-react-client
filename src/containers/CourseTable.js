@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CourseTable = ({courses, selectCourse, deleteCourse}) => {
     return(
-        <div className="table-responsive">
+        <div>
             <table className="table">
                 <thead>
-                <tr className="d-flex">
+                <h5 className="d-flex">
                     <th className="col-5">
                         Title
                     </th>
@@ -35,7 +35,7 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
                     <th className="col-1">
                         &nbsp;
                     </th>
-                </tr>
+                </h5>
                 </thead>
                 <tbody>
                     { courses.map((course, key) =>

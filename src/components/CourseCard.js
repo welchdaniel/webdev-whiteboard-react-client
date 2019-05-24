@@ -62,10 +62,6 @@ const CourseCard = ({course, selectCourse, deleteCourse}) => {
                         </div>
                         
                     </div>
-                    
-                
-                
-                
             </div>
         </div>
     )

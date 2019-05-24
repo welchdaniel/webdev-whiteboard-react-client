@@ -7,30 +7,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
     return(
         <div className="container-responsive">
-            <h5 className="row mt-3 font-weight-bold">
-                <div className="col-7">Recent Documents</div>
-                <div className="col-2">
+            <h6 className="row mt-3 font-weight-bold">
+                <div className="col-sm-7 col-10">Recent Documents</div>
+                <div className="col-sm-2 col-0 d-none d-sm-block">
                     <a className="pr-2">Owned by</a>
                     <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>
                 </div>
-                <div className="col-1">
+                <div className="col-sm-1 col-2">
                     <Link to="/course/table">
                         <FontAwesomeIcon 
                             icon={faList}
                             className="fa-lg text-dark"/>
                     </Link>
                 </div>
-                <div className="col-1">
+                <div className="col-sm-1 col-0 d-none d-sm-block">
                     <FontAwesomeIcon 
                         icon={faSortAlphaDown} 
                         className="fa-lg"/>
                 </div>
-                <div className="col-1">
+                <div className="col-sm-1 col-0 d-none d-sm-block">
                     <FontAwesomeIcon 
                             icon={faFolder} 
                             className="fa-lg"/>
                 </div>
-            </h5>
+            </h6>
     
             <div className="row mt-4">
                 {courses.map((course, key) =>

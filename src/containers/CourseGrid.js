@@ -8,7 +8,11 @@ const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
     return(
         <div className="container-responsive">
             <h6 className="row mt-4 font-weight-bold">
-                <div className="col-sm-7 col-10">Recent Documents</div>
+                <div className="col-sm-7 col-10">
+                    <a className="ml-3">
+                        Recent Documents
+                    </a>
+                </div>
                 <div className="col-sm-2 col-0 d-none d-sm-block">
                     <a className="pr-2">Owned by</a>
                     <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>

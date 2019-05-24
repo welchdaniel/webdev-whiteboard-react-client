@@ -3,7 +3,7 @@ import {BrowserRouter as Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt, faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
@@ -24,13 +24,16 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
             <td className="col-2">
                 {course.modifiedAt}
             </td>
-            <td className="col-1">
+            <td className="col-2">
                 &nbsp;
             </td>
-            <td className="col-2">
+            <td className="col-1">
                 <Dropdown>
-                    <Dropdown.Toggle>
-                        Options
+                    <Dropdown.Toggle
+                        variant="warning">
+                        <FontAwesomeIcon 
+                            icon={faPencilAlt}
+                            className="mr-1"/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <LinkContainer to={`/course/edit/${course.id}`}>

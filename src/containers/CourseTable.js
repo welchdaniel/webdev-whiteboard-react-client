@@ -26,9 +26,11 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
                                 icon={faGripHorizontal}
                                 className="fa-lg text-dark"/>
                         </Link>
+                    </th>
+                    <th className="col-1">
                         <FontAwesomeIcon 
-                            icon={faSortAlphaDown} 
-                            className="fa-lg ml-3"/>
+                                icon={faSortAlphaDown} 
+                                className="fa-lg"/>
                     </th>
                     <th className="col-1">
                         &nbsp;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap'
 import { faFileAlt, faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,15 +8,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const CourseCard = ({course, selectCourse, deleteCourse}) => {
     return(
         <div className="card" styles={{width: '18rem'}}>
-            
+            <LinkContainer to={`/course/edit/${course.id}`}>
             <img 
                 className="card-img-top"
                 src="https://picsum.photos/300/200"
                 alt=""/>
+            </LinkContainer>
             <div className="card-body">
-                    <div className="row">
-                        <h5 className="card-title">{course.title}</h5>
-                    </div>
+                    <Link 
+                        to={`/course/edit/${course.id}`} 
+                        className="row text-dark">
+                            <h5 className="card-title">{course.title}</h5>
+                    </Link>
                     <div className="row">
                         <div>
                             <p className="card-modified">

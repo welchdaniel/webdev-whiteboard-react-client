@@ -1,22 +1,23 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
         <tr className="d-flex">
-            <LinkContainer to={`/course/edit/${course.id}`}>
-            <td className="col-5">
+            <Link 
+                to={`/course/edit/${course.id}`} 
+                className="col-5 text-dark">
                 <span className="label">
                     <FontAwesomeIcon 
                         icon={faFileAlt} 
                         className="text-primary mr-2"/>
                 </span>
                 {course.title}
-            </td>
-            </LinkContainer>
+            </Link>
             <td className="col-2">
                 me
             </td>

@@ -45,7 +45,6 @@ export default class Whiteboard extends React.Component {
     }
 
     titleChanged = (event) => {
-        console.log(event.target.value);
         this.setState({
             addedCourse: {
                 id: new Date().getTime(),
@@ -95,10 +94,6 @@ export default class Whiteboard extends React.Component {
                             </Form>
                         </Navbar.Collapse>
                     </Navbar>
-                    <h1>WhiteBoard</h1>
-                    <Link to="/course/table">Table</Link>
-                    <Link to="/course/grid">Grid</Link>
-                    <Link to="/course/editor">Editor</Link>
 
 
 
@@ -115,7 +110,7 @@ export default class Whiteboard extends React.Component {
                                         deleteCourse={this.deleteCourse}
                                         courses={this.state.courses}/>}/>
                     <Route
-                        path="/course/editor/:courseId"
+                        path="/course/edit/:courseId"
                         render={(props) => <CourseEditor
                                         {...props}
                                         courses={this.state.courses}/>}/>

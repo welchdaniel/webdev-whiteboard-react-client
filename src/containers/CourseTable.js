@@ -9,28 +9,31 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
         <div className="table-responsive">
             <table className="table">
                 <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Title</th>
-                    <th>
+                <tr className="d-flex">
+                    <th className="col-5">
+                        Title
+                    </th>
+                    <th className="col-2">
                         <a className="pr-2">Owned by</a>
                         <FontAwesomeIcon icon={faCaretDown} className="fa-md"/>
                     </th>
-                    <th>Last modified by me</th>
-                    <th>
+                    <th className="col-2">
+                        Last modified
+                    </th>
+                    <th className="col-1">
                         <Link to="/course/grid">
                             <FontAwesomeIcon 
                                 icon={faGripHorizontal}
                                 className="fa-lg text-dark"/>
                         </Link>
-                    </th>
-                    <th>
                         <FontAwesomeIcon 
                             icon={faSortAlphaDown} 
-                            className="fa-lg"/>
+                            className="fa-lg ml-3"/>
                     </th>
-                    <th>&nbsp;</th>
-                    </tr>
+                    <th className="col-1">
+                        &nbsp;
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
                     { courses.map((course, key) =>

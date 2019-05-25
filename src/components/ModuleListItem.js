@@ -24,7 +24,7 @@ const ModuleListItem = ({module, selectModule, deleteModule, selectedModule}) =>
                                         icon={faEdit}
                                         className="mr-1"/>
                                 </span>
-                                Edit Course
+                                Edit Module
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => deleteModule(module.id)}>
                             <span className="label">
@@ -32,7 +32,7 @@ const ModuleListItem = ({module, selectModule, deleteModule, selectedModule}) =>
                                     icon={faTrashAlt}
                                     className="mr-2"/>
                             </span>
-                            Delete Course
+                            Delete Module
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

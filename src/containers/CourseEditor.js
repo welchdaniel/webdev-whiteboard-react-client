@@ -20,20 +20,22 @@ export default class CourseEditor extends React.Component {
             course: this.course,
             modules: this.course.modules,
             selectedModule: '',
-            selectedTopic: {
+            selectedTopic: '',
+            selectedLesson: '',
+            newLesson: {
+                id: -1,
+                title: '',
+                topics: []
+            },
+            newTopic: {
                 id: -1,
                 title: '',
                 widgets: []
             },
-            selectedLesson: {
-                id: -1,
-                title: '',
-                topics: [this.selectedTopic]
-            },
             addedModule: {
                 id: -1,
                 title: '',
-                lessons: [this.selectedLesson]
+                lessons: [this.addedLesson]
             }
         }
     }
@@ -49,10 +51,15 @@ export default class CourseEditor extends React.Component {
 
 
     selectModule = module => {
+        let firstLesson = module.lessons.length > 0 ? module.lessons[0] : this.state.newTopic;
+        let firstTopic = this.state.newLesson;
+        if (module.lessons.length > 0 && module.lessons[0].topics.length > 0) {
+            firstTopic = module.lessons[0].topics[0]
+        }
         this.setState({
             selectedModule: module,
-            selectedLesson: module.lessons[0],
-            selectedTopic: module.lessons[0].topics[0]
+            selectedLesson: firstLesson,
+            selectedTopic: firstTopic
             }
         )
     }

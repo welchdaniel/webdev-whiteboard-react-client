@@ -20,12 +20,20 @@ export default class CourseEditor extends React.Component {
             course: this.course,
             modules: this.course.modules,
             selectedModule: '',
-            selectedLesson: '',
-            selectedTopic: '',
+            selectedTopic: {
+                id: -1,
+                title: '',
+                widgets: []
+            },
+            selectedLesson: {
+                id: -1,
+                title: '',
+                topics: [this.selectedTopic]
+            },
             addedModule: {
                 id: -1,
                 title: '',
-                lessons: []
+                lessons: [this.selectedLesson]
             }
         }
     }
@@ -38,6 +46,7 @@ export default class CourseEditor extends React.Component {
             }
         })
     }
+
 
     selectModule = module => {
         this.setState({

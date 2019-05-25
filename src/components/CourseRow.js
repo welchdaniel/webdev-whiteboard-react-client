@@ -41,7 +41,8 @@ const CourseRow = ({course, selectCourse, deleteCourse}) => {
                         alignRight>
                         <LinkContainer to={`/course/edit/${course.id}`}>
                         <Dropdown.Item>
-                                <span className="label">
+                                <span 
+                                    className="label">
                                     <FontAwesomeIcon 
                                         icon={faEdit}
                                         className="mr-1"/>

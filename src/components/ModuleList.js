@@ -9,13 +9,13 @@ const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModu
         <div className="container-fluid">
             <div className="row mb-3 mt-2">
                 <input 
-                    className="col-10 form-control"
+                    className="col-12 col-sm-10 form-control"
                     placeholder="New Module"
                     value={moduleTitle}
                     onChange={titleChanged}>
                 </input>
                 <Button 
-                    className="col-2"
+                    className="col-12 col-sm-2"
                     onClick={createModule}
                     variant="success">
                     <FontAwesomeIcon icon={faPlus} />

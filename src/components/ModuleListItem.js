@@ -5,10 +5,12 @@ import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-ico
 
 const ModuleListItem = ({module, selectModule, editModule, deleteModule, selectedModule}) => {
     return(
-        <li className="col-12"
+        <li className="row"
             onClick={() => selectModule(module)}
             className={module === selectedModule ? "list-group-item active" : "list-group-item"}>
-            <a>{module.title}</a>
+            <a>
+                {module.title}
+            </a>
             <Dropdown className="float-right">
                     <Dropdown.Toggle
                         variant="warning">

@@ -121,7 +121,7 @@ export default class CourseEditor extends React.Component {
     render() {
         return(
             <div className="container-fluid">
-                <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
+                <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                     <Link to="/course/grid">
                         <FontAwesomeIcon 
                             icon={faTimes}
@@ -139,7 +139,7 @@ export default class CourseEditor extends React.Component {
                                 <Form.Control 
                                     type="text" 
                                     placeholder="New Lesson" 
-                                    className="mr-xs-2 ml-sm-3"
+                                    className="mr-xs-2 ml-lg-3"
                                     id="new-lesson" />
                                 <Button 
                                     variant="danger">
@@ -151,7 +151,7 @@ export default class CourseEditor extends React.Component {
 
 
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-6 col-md-3">
                     <ModuleList
                         editModule={this.editModule}
                         editingModule={this.state.editingModule}

@@ -18,9 +18,15 @@ export default class CourseEditor extends React.Component {
         this.state = {
             courseId: courseId,
             course: this.course,
+            modules: this.course.modules,
             selectedModule: '',
             selectedLesson: '',
-            selectedTopic: ''
+            selectedTopic: '',
+            addedModule: {
+                id: -1,
+                title: '',
+                lessons: []
+            }
         }
     }
 
@@ -39,6 +45,12 @@ export default class CourseEditor extends React.Component {
             selectedTopic: lesson.topics[0]
             }
         )
+    }
+
+    deleteModule = id => {
+        this.setState({
+            modules: this.state.modules.filter(module => module.id !== id)
+        })
     }
 
     render() {
@@ -63,7 +75,8 @@ export default class CourseEditor extends React.Component {
                     <ModuleList
                         selectedModule={this.state.selectedModule}
                         selectModule={this.selectModule}
-                        modules={this.state.course.modules}/>
+                        deleteModule={this.deleteModule}
+                        modules={this.state.modules}/>
                     </div>
                 </div>
             </div>

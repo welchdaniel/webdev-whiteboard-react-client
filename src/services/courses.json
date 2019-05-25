@@ -5,6 +5,7 @@
       "modifiedAt": "7:42:38 5/21/2019",
       "modules": [
         {
+          "id": 10,
           "title": "Week 1",
           "lessons": [
             {
@@ -54,6 +55,7 @@
           ]
         },
         {
+          "id": 7,
           "title": "Week 2",
           "lessons": []
         }

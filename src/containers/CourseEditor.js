@@ -25,8 +25,16 @@ export default class CourseEditor extends React.Component {
                 title: '',
                 lessons: []
             },
-            selectedTopic: '',
-            selectedLesson: '',
+            selectedLesson: {
+                id:-1,
+                title: '',
+                topics: []
+            },
+            selectedTopic: {
+                id: -1,
+                title: '',
+                widgets: []
+            },
             editingModule: false,
             newLesson: {
                 id: -1,
@@ -73,11 +81,16 @@ export default class CourseEditor extends React.Component {
     }
 
     selectLesson = lesson => {
+        let firstTopic = lesson.topics.length > 0 ? lesson.topics[0] : this.state.newTopic;
         this.setState({ 
             selectedLesson: lesson, 
-            selectedTopic: lesson.topics[0]
+            selectedTopic: firstTopic
             }
         )
+    }
+
+    selectTopic = topic => {
+        console.log(topic);
     }
 
     titleChanged = (event) => {
@@ -164,6 +177,12 @@ export default class CourseEditor extends React.Component {
                         deleteModule={this.deleteModule}
                         modules={this.state.modules}/>
                     </div>
+                    <div className="col-6 col-md-9">
+                    <TopicPills
+                        topics={this.state.selectedLesson.topics}
+                        selectedTopic={this.state.selectedTopic}
+                        selectTopic={this.selectTopic}/>
+                </div>
                 </div>
             </div>
         )

@@ -44,8 +44,9 @@ export default class CourseEditor extends React.Component {
 
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
+        this.state.modules.push(this.state.addedModule)
         this.setState({
-            modules: [this.state.addedModule, ...this.state.modules],
+            modules: this.state.modules,
             addedModule: {
                 title: ''
             }

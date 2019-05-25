@@ -56,6 +56,16 @@ export default class CourseEditor extends React.Component {
         )
     }
 
+    titleChanged = (event) => {
+        this.setState({
+            addedModule: {
+                id: new Date().getTime(),
+                title: event.target.value,
+                lessons: []
+            }
+        })
+    }
+
     deleteModule = id => {
         this.setState({
             modules: this.state.modules.filter(module => module.id !== id)
@@ -82,6 +92,7 @@ export default class CourseEditor extends React.Component {
                 <div className="row">
                     <div className="col-3">
                     <ModuleList
+                        titleChanged={this.titleChanged}
                         createModule={this.createModule}
                         selectedModule={this.state.selectedModule}
                         selectModule={this.selectModule}

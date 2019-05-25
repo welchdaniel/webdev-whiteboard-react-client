@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const ModuleListItem = ({module, selectModule, deleteModule, selectedModule}) => {
     return(

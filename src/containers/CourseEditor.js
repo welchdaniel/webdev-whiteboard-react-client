@@ -19,9 +19,11 @@ export default class CourseEditor extends React.Component {
             courseId: courseId,
             course: this.course,
             modules: this.course.modules,
+            moduleNewTitle: '',
             selectedModule: '',
             selectedTopic: '',
             selectedLesson: '',
+            editingModule: false,
             newLesson: {
                 id: -1,
                 title: '',
@@ -35,12 +37,13 @@ export default class CourseEditor extends React.Component {
             addedModule: {
                 id: -1,
                 title: '',
-                lessons: [this.addedLesson]
-            }
+                lessons: []
+            },
         }
     }
 
     createModule = () => {
+        this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
         this.setState({
             modules: [this.state.addedModule, ...this.state.modules],
             addedModule: {
@@ -82,6 +85,28 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    editModule = event => {
+        let titleInput = event.target.value == undefined ? '' : event.target.value;
+        this.setState({
+            editingModule: true,
+            moduleNewTitle: titleInput
+        })
+    }
+
+    renameModule = () => {
+        console.log(this.state.moduleNewTitle);
+        this.state.modules.map((module) => {
+            if (module.id == this.state.selectedModule.id) {
+                module.title = this.state.moduleNewTitle;
+            }
+        })
+        this.setState({
+            modules: this.state.modules,
+            editingModule: false
+        })
+        console.log(this.state.modules);
+    }
+
     deleteModule = id => {
         this.setState({
             modules: this.state.modules.filter(module => module.id !== id)
@@ -108,6 +133,10 @@ export default class CourseEditor extends React.Component {
                 <div className="row">
                     <div className="col-3">
                     <ModuleList
+                        editModule={this.editModule}
+                        editingModule={this.state.editingModule}
+                        renameModule={this.renameModule}
+                        moduleTitle={this.state.addedModule.title}
                         titleChanged={this.titleChanged}
                         createModule={this.createModule}
                         selectedModule={this.state.selectedModule}

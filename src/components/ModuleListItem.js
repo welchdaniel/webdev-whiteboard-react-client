@@ -3,7 +3,7 @@ import { Dropdown } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-const ModuleListItem = ({module, selectModule, deleteModule, selectedModule}) => {
+const ModuleListItem = ({module, selectModule, editModule, deleteModule, selectedModule}) => {
     return(
         <li className="col-12"
             onClick={() => selectModule(module)}
@@ -17,7 +17,7 @@ const ModuleListItem = ({module, selectModule, deleteModule, selectedModule}) =>
                             className="mr-1"/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item>
+                        <Dropdown.Item onClick={editModule}>
                                 <span 
                                     className="label">
                                     <FontAwesomeIcon 

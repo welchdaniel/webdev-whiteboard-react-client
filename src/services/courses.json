@@ -9,9 +9,11 @@
           "title": "Week 1",
           "lessons": [
             {
+              "id": 124,
               "title": "HTML",
               "topics": [
                 {
+                  "id": 927,
                   "title": "DOM",
                   "widgets": [
                     {
@@ -39,16 +41,19 @@
                   ]
                 },
                 {
+                  "id": 938,
                   "title": "Tags",
                   "widgets": []
                 },
                 {
+                  "id": 949,
                   "title": "Attributes",
                   "widgets": []
                 }
               ]
             },
             {
+              "id": 127,
               "title": "CSS",
               "topics": []
             }

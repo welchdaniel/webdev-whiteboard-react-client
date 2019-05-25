@@ -1,8 +1,11 @@
 import React from 'react'
+import { Dropdown } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const TopicPills = ({topics, selectedTopic, selectTopic}) => {
     return(
-        <ul className="nav nav-pills">
+        <ul className="nav nav-pills nav-fill">
             {topics.map((topic, key) => 
                 <li 
                     className="nav-item"

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LessonTabs = ({lessons, selectedLesson, selectLesson}) => {
+const LessonTabs = ({lessons, selectedLesson, selectLesson, editTab, editingTab, deleteTab }) => {
     return(
         <ul className="nav nav-tabs">
             {lessons.map((lesson, key) => 

@@ -29,7 +29,7 @@ export default class Whiteboard extends React.Component {
 
     createCourse = () => {
         this.setState({
-            courses: [this.state.addedCourse, ...this.state.courses],
+            courses: courseService.createCourse(this.state.addedCourse),
             addedCourse: {
                 title: ''
             }
@@ -38,9 +38,8 @@ export default class Whiteboard extends React.Component {
     }
 
     deleteCourse = (id) => {
-        console.log("delete course" + id);
         this.setState({
-        courses: this.state.courses.filter(course => course.id !== id)
+            courses: courseService.deleteCourse(id)
         })
     }
 

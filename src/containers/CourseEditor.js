@@ -30,6 +30,15 @@ export default class CourseEditor extends React.Component {
         }
     }
 
+    createModule = () => {
+        this.setState({
+            modules: [this.state.addedModule, ...this.state.modules],
+            addedModule: {
+                title: ''
+            }
+        })
+    }
+
     selectModule = module => {
         this.setState({
             selectedModule: module,
@@ -73,6 +82,7 @@ export default class CourseEditor extends React.Component {
                 <div className="row">
                     <div className="col-3">
                     <ModuleList
+                        createModule={this.createModule}
                         selectedModule={this.state.selectedModule}
                         selectModule={this.selectModule}
                         deleteModule={this.deleteModule}

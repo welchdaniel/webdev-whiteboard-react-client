@@ -87,7 +87,7 @@
               "topics": [
                 {
                   "id": 999111,
-                  "title": "DOM",
+                  "title": "Active",
                   "widgets": [
                     {
                       "type": "HEADING",
@@ -115,12 +115,12 @@
                 },
                 {
                   "id": 999112,
-                  "title": "Tags",
+                  "title": "Another Pill",
                   "widgets": []
                 },
                 {
                   "id": 999113,
-                  "title": "Attributes",
+                  "title": "Third Pill",
                   "widgets": []
                 }
               ]

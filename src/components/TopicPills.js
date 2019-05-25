@@ -8,7 +8,7 @@ const TopicPills = ({topics, selectedTopic, selectTopic}) => {
                     className="nav-item"
                     onClick={() => selectTopic(topic)}
                     key={key}>
-                <a className={topic === selectedTopic ? "nav-link active" : "nav-link bg-secondary"}>
+                <a className={topic === selectedTopic ? "nav-link active text-white" : "nav-link bg-light"}>
                     {topic.title}
                 </a>
              </li>

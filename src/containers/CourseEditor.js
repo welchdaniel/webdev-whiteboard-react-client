@@ -90,7 +90,9 @@ export default class CourseEditor extends React.Component {
     }
 
     selectTopic = topic => {
-        console.log(topic);
+        this.setState({
+            selectedTopic: topic
+        })
     }
 
     titleChanged = (event) => {

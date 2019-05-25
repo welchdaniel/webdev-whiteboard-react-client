@@ -71,5 +71,103 @@
       "title": "CS5200",
       "modifiedAt": "7:15:02 5/21/2019",
       "modules": []
+    },
+    {
+      "id": "999",
+      "title": "Try Me",
+      "modifiedAt": "6:35:40 5/23/2019",
+      "modules": [
+        {
+          "id": 9991,
+          "title": "Click Me",
+          "lessons": [
+            {
+              "id": 99911,
+              "title": "Tab 1",
+              "topics": [
+                {
+                  "id": 999111,
+                  "title": "DOM",
+                  "widgets": [
+                    {
+                      "type": "HEADING",
+                      "size": 1,
+                      "text": "The Document Object Model"
+                    },
+                    {
+                      "type": "PARAGRAPH",
+                      "text": "This topic introduces the DOM"
+                    },
+                    {
+                      "type": "LIST",
+                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                    },
+                    {
+                      "type": "IMAGE",
+                      "src": "https://picsum.photos/200"
+                    },
+                    {
+                      "type": "LINK",
+                      "title": "The DOM",
+                      "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                    }
+                  ]
+                },
+                {
+                  "id": 999112,
+                  "title": "Tags",
+                  "widgets": []
+                },
+                {
+                  "id": 999113,
+                  "title": "Attributes",
+                  "widgets": []
+                }
+              ]
+            },
+            {
+              "id": 99912,
+              "title": "Tab 2",
+              "topics": []
+            },
+            {
+              "id": 99913,
+              "title": "Tab 3",
+              "topics": []
+            },
+            {
+              "id": 99914,
+              "title": "Tab 4",
+              "topics": []
+            },
+            {
+              "id": 99915,
+              "title": "Tab 5",
+              "topics": []
+            }
+          ]
+        },
+        {
+          "id": 9992,
+          "title": "Rename Me",
+          "lessons": [
+            {
+              "id": 99921,
+              "title": "I'm a Tab",
+              "topics": []
+            },
+            {
+              "id": 99922,
+              "title": "Also a Tab",
+              "topics": []
+            }
+          ]
+        },
+        {
+          "id": 9992,
+          "title": "Delete Me",
+          "lessons": []
+        }
+      ]
     }
 ]

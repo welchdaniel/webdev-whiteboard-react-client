@@ -3,8 +3,8 @@ import LessonTabs from '../components/LessonTabs'
 import TopicPills from '../components/TopicPills'
 import ModuleList from '../components/ModuleList'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Navbar, Nav, Button, Form } from 'react-bootstrap';
+import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class CourseEditor extends React.Component {
@@ -20,7 +20,11 @@ export default class CourseEditor extends React.Component {
             course: this.course,
             modules: this.course.modules,
             moduleNewTitle: '',
-            selectedModule: '',
+            selectedModule: {
+                id: -1,
+                title: '',
+                lessons: []
+            },
             selectedTopic: '',
             selectedLesson: '',
             editingModule: false,
@@ -55,8 +59,8 @@ export default class CourseEditor extends React.Component {
 
 
     selectModule = module => {
-        let firstLesson = module.lessons.length > 0 ? module.lessons[0] : this.state.newTopic;
-        let firstTopic = this.state.newLesson;
+        let firstLesson = module.lessons.length > 0 ? module.lessons[0] : this.state.newLesson;
+        let firstTopic = this.state.newTopic;
         if (module.lessons.length > 0 && module.lessons[0].topics.length > 0) {
             firstTopic = module.lessons[0].topics[0]
         }
@@ -127,6 +131,21 @@ export default class CourseEditor extends React.Component {
                     <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
                     <Navbar.Collapse id="webdev-navbar-nav">
                         <Nav className="mr-auto"/>
+                        <LessonTabs inline
+                            selectLesson={this.selectLesson}
+                            selectedLesson={this.state.selectedLesson}
+                            lessons={this.state.selectedModule.lessons}/>
+                        <Form inline>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="New Lesson" 
+                                    className="mr-xs-2 ml-sm-3"
+                                    id="new-lesson" />
+                                <Button 
+                                    variant="danger">
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </Form>
                     </Navbar.Collapse>
                 </Navbar>
 

@@ -298,7 +298,7 @@ export default class CourseEditor extends React.Component {
                     </div>
                     <div className="col-6 col-md-9 mt-2">
                         <div className="container-fluid">
-                            <div className="row">
+                            <div className="row justify-content-end">
                                 <div className="col-12 col-md-4">
                                     <Form inline className={this.state.selectedModule.id > 0 ? "row mb-3" : "d-none"}>
                                         <Form.Control 

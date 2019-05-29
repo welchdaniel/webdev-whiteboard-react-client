@@ -264,7 +264,7 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <Form inline>
+                        <Form inline className={this.state.selectedModule.id > 0 ? "" : "d-none"}>
                                 <Form.Control 
                                     type="text"
                                     onChange={this.tabTitleChanged}

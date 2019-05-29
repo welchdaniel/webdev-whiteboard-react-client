@@ -265,19 +265,19 @@ export default class CourseEditor extends React.Component {
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
                         <Form inline className={this.state.selectedModule.id > 0 ? "" : "d-none"}>
-                                <Form.Control 
-                                    type="text"
-                                    onChange={this.tabTitleChanged}
-                                    value={this.state.addedLesson.title}
-                                    placeholder="New Lesson" 
-                                    className="mr-xs-2 ml-lg-3"
-                                    id="new-lesson" />
-                                <Button 
-                                    onClick={this.createLesson}
-                                    variant="danger">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
+                            <Form.Control 
+                                type="text"
+                                onChange={this.tabTitleChanged}
+                                value={this.state.addedLesson.title}
+                                placeholder="New Lesson" 
+                                className="mr-xs-2 ml-lg-3"
+                                id="new-lesson" />
+                            <Button 
+                                onClick={this.createLesson}
+                                variant="danger">
+                                <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                        </Form>
                     </Navbar.Collapse>
                 </Navbar>
 
@@ -296,12 +296,35 @@ export default class CourseEditor extends React.Component {
                         deleteModule={this.deleteModule}
                         modules={this.state.modules}/>
                     </div>
-                    <div className="col-6 col-md-9">
-                    <TopicPills
-                        topics={this.state.selectedLesson.topics}
-                        selectedTopic={this.state.selectedTopic}
-                        selectTopic={this.selectTopic}/>
-                </div>
+                    <div className="col-6 col-md-9 mt-2">
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="col-12 col-md-4">
+                                    <Form inline className={this.state.selectedModule.id > 0 ? "row mb-3" : "d-none"}>
+                                        <Form.Control 
+                                            type="text"
+                                            onChange={this.tabTitleChanged}
+                                            value={this.state.addedLesson.title}
+                                            placeholder="New Topic" 
+                                            className="col-12 col-lg-10 col-sm-9"
+                                            id="new-topic" />
+                                        <Button 
+                                            onClick={this.createLesson}
+                                            variant="secondary"
+                                            className="col-12 col-lg-2 col-sm-3">
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </Button>
+                                    </Form>
+                                </div>
+                                <div className="col-12">
+                                    <TopicPills
+                                        topics={this.state.selectedLesson.topics}
+                                        selectedTopic={this.state.selectedTopic}
+                                        selectTopic={this.selectTopic}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

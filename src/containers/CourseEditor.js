@@ -156,6 +156,16 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    pillTitleChanged = (event) => {
+        this.setState({
+            addedTopic: {
+                id: new Date().getTime(),
+                title: event.target.value,
+                topics: []
+            }
+        })
+    }
+
     editModule = event => {
         let titleInput = event.target.value == undefined ? '' : event.target.value;
         this.setState({
@@ -303,8 +313,8 @@ export default class CourseEditor extends React.Component {
                                     <Form inline className={this.state.selectedModule.id > 0 ? "row mb-3" : "d-none"}>
                                         <Form.Control 
                                             type="text"
-                                            onChange={this.tabTitleChanged}
-                                            value={this.state.addedLesson.title}
+                                            onChange={this.pillTitleChanged}
+                                            value={this.state.addedTopic.title}
                                             placeholder="New Topic" 
                                             className="col-12 col-lg-10 col-sm-9"
                                             id="new-topic" />

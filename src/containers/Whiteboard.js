@@ -78,20 +78,24 @@ export default class Whiteboard extends React.Component {
                         <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
                         <Navbar.Collapse id="webdev-navbar-nav">
                             <Nav className="mr-auto"/>
-                            <Form inline>
-                                <Form.Control 
-                                    onChange={this.titleChanged}
-                                    value={this.state.addedCourse.title}
-                                    type="text" 
-                                    placeholder="New Course Title" 
-                                    className="mr-xs-2"
-                                    id="new-course-title" />
-                                <Button 
-                                    onClick={this.createCourse}
-                                    variant="danger">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
+                            <div className="row">
+                                <Form inline
+                                    className="col-12 center-under-md mt-3 mb-3 mt-sm-0 mb-sm-0">
+                                    <Form.Control 
+                                        onChange={this.titleChanged}
+                                        value={this.state.addedCourse.title}
+                                        type="text" 
+                                        placeholder="New Course Title" 
+                                        className="col-9"
+                                        id="new-course-title" />
+                                    <Button 
+                                        onClick={this.createCourse}
+                                        variant="danger"
+                                        className="col-3">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
+                            </div>
                         </Navbar.Collapse>
                     </Navbar>
 

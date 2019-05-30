@@ -8,7 +8,7 @@ const ModuleListItem = ({module, selectModule, editModule, deleteModule, selecte
         <li
             onClick={() => selectModule(module)}
             className={module === selectedModule ? "list-group-item active" : "list-group-item"}>
-            <a>
+            <a className="text-center">
                 {module.title}
             </a>
             <Dropdown className="float-right">

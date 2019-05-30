@@ -80,7 +80,6 @@ export default class CourseEditor extends React.Component {
     }
 
     createLesson = () => {
-        console.log(this.state.selectedModule);
         this.state.addedLesson.title = this.state.addedLesson.title == '' ? 'New Lesson' : this.state.addedLesson.title;
         if (this.state.selectedModule !== undefined) {
             this.state.selectedModule.lessons.push(this.state.addedLesson);
@@ -98,14 +97,20 @@ export default class CourseEditor extends React.Component {
     }
 
     createTopic = () => {
-        this.state.addedModule.title = this.state.addedTopic.title == '' ? 'New Topic' : this.state.addedModule.title;
-        this.state.modules.push(this.state.addedModule)
-        this.setState({
-            modules: this.state.modules,
-            addedModule: {
-                title: ''
-            }
-        })
+        this.state.addedTopic.title = this.state.addedTopic.title == '' ? 'New Topic' : this.state.addedTopic.title;
+        if (this.state.selectedLesson !== undefined) {
+            this.state.selectedLesson.topics.push(this.state.addedTopic)
+            this.setState({
+                selectedLesson: {
+                    id: this.state.selectedLesson.id,
+                    title: this.state.selectedLesson.title,
+                    topics: this.state.selectedLesson.topics
+                },
+                addedTopic: {
+                    title: ''
+                }
+            })
+        }
     }
 
 
@@ -156,7 +161,6 @@ export default class CourseEditor extends React.Component {
                 topics: []
             }
         })
-        console.log(this.state.addedLesson);
     }
 
     pillTitleChanged = (event) => {
@@ -167,6 +171,7 @@ export default class CourseEditor extends React.Component {
                 widgets: []
             }
         })
+        console.log(this.state.addedTopic);
     }
 
     editModule = event => {

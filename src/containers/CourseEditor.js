@@ -161,7 +161,7 @@ export default class CourseEditor extends React.Component {
             addedTopic: {
                 id: new Date().getTime(),
                 title: event.target.value,
-                topics: []
+                widgets: []
             }
         })
     }
@@ -274,17 +274,18 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <Form inline className={this.state.selectedModule.id > 0 ? "" : "d-none"}>
+                        <Form inline className={this.state.selectedModule.id > 0 ? "" : "row d-none"}>
                             <Form.Control 
                                 type="text"
                                 onChange={this.tabTitleChanged}
                                 value={this.state.addedLesson.title}
                                 placeholder="New Lesson" 
-                                className="mr-xs-2 ml-lg-3"
+                                className="mr-xs-2 ml-lg-3 col-8 col-sm-9 col-lg-9"
                                 id="new-lesson" />
                             <Button 
                                 onClick={this.createLesson}
-                                variant="danger">
+                                variant="danger"
+                                className="col-3 col-sm-2 col-lg-2">
                                 <FontAwesomeIcon icon={faPlus} />
                             </Button>
                         </Form>

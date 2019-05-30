@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LessonTabs = ({lessons, selectedLesson, selectLesson, editTab, editingTab, deleteTab }) => {
     return(
-        <ul className="nav nav-tabs">
+        <ul className="nav nav-tabs mt-4 mt-lg-0">
             {lessons.map((lesson, key) => 
                 <li 
                     className="nav-item"

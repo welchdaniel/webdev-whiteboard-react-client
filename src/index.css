@@ -1,0 +1,6 @@
+@media only screen and (max-width: 991.98px) {
+    .block-under-md {
+        display: block;
+        width: 100%;
+    }
+}

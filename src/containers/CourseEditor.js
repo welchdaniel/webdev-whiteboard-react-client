@@ -290,50 +290,55 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <Dropdown 
-                            alignRight 
-                            className={this.state.selectedModule.id > 0 ? "float-right mr-xs-2 ml-lg-3" : "row d-none"}>
-                            <Dropdown.Toggle
-                                variant="warning">
-                                <FontAwesomeIcon 
-                                    icon={faPencilAlt}
-                                    className="mr-1"/>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.editTab}>
-                                        <span 
-                                            className="label">
+                        <div className="row ml-lg-2 mb-4 mb-lg-0">
+                            <Dropdown 
+                                alignRight 
+                                className={this.state.selectedModule.id > 0 ? 
+                                    "float-right col-12 col-lg-2 mt-4 mt-sm-3 mt-0 mb-4 mb-sm-3 mb-0" : "row d-none"}>
+                                <Dropdown.Toggle
+                                    className="block-under-md"
+                                    variant="warning">
+                                    <FontAwesomeIcon 
+                                        icon={faPencilAlt}
+                                        className="mr-1"/>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={this.editTab}>
+                                            <span 
+                                                className="label">
+                                                <FontAwesomeIcon 
+                                                    icon={faEdit}
+                                                    className="mr-1"/>
+                                            </span>
+                                            Edit Selected Lesson
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                        <span className="label">
                                             <FontAwesomeIcon 
-                                                icon={faEdit}
-                                                className="mr-1"/>
+                                                icon={faTrashAlt}
+                                                className="mr-2"/>
                                         </span>
-                                        Edit Selected Lesson
-                                </Dropdown.Item>
-                                <Dropdown.Item onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
-                                    <span className="label">
-                                        <FontAwesomeIcon 
-                                            icon={faTrashAlt}
-                                            className="mr-2"/>
-                                    </span>
-                                    Delete Selected Lesson
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Form inline className={this.state.selectedModule.id > 0 ? "" : "row d-none"}>
-                            <Form.Control 
-                                type="text"
-                                onChange={this.tabTitleChanged}
-                                value={this.state.addedLesson.title}
-                                placeholder="New Lesson" 
-                                className="mr-xs-2 ml-lg-3 col-8 col-sm-9 col-lg-9"
-                                id="new-lesson" />
-                            <Button 
-                                onClick={this.createLesson}
-                                variant="danger"
-                                className="col-3 col-sm-2 col-lg-2">
-                                <FontAwesomeIcon icon={faPlus} />
-                            </Button>
-                        </Form>
+                                        Delete Selected Lesson
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Form inline className={this.state.selectedModule.id > 0 ? 
+                                    "col-12 col-lg-10" : "row d-none"}>
+                                <Form.Control 
+                                    type="text"
+                                    onChange={this.tabTitleChanged}
+                                    value={this.state.addedLesson.title}
+                                    placeholder="New Lesson" 
+                                    className="mr-xs-2 ml-lg-3 col-9 col-sm-10 col-lg-9"
+                                    id="new-lesson" />
+                                <Button 
+                                    onClick={this.createLesson}
+                                    variant="danger"
+                                    className="col-3 col-sm-2 col-lg-2">
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </Form>
+                        </div>
                     </Navbar.Collapse>
                 </Navbar>
 

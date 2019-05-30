@@ -34,15 +34,18 @@ export default class CourseService {
     }
 
     updateCourse = (id, course) => {
-        let updatedCourses = this.coursesJSON.map(crs => {
+        console.log(this.coursesJSON);
+        let temp = [];
+        for(var crs in this.coursesJSON) {
             if(crs.id == id) {
-                crs.id = id;
                 crs.title = course.title;
                 crs.modifiedAt = course.modifiedAt;
                 crs.modules = course.modules;
             }
-        })
-        this.coursesJSON = updatedCourses;
+            temp.push(crs);
+        }
+        this.coursesJSON = temp;
+        console.log(this.coursesJSON);
         return this.coursesJSON;
     }
 

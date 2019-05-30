@@ -80,7 +80,7 @@ export default class CourseEditor extends React.Component {
                 title: ''
             }
         })
-        this.props.updateCourse();
+        this.props.updateCourse(this.course.id, this.course);
     }
 
     //done
@@ -253,7 +253,7 @@ export default class CourseEditor extends React.Component {
         this.setState({
             modules: newModules
         })
-        this.props.updateCourse();
+        this.props.updateCourse(this.course.id, this.course);
     }
 
     deleteTab = id => {

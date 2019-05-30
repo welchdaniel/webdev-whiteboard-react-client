@@ -54,7 +54,8 @@ export default class Whiteboard extends React.Component {
         })
     }
 
-    updateCourse = () => {
+    updateCourse = (id, course) => {
+        courseService.updateCourse(id, course);
         console.log(courseService.findAllCourses())
     }
 

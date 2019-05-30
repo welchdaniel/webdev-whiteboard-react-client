@@ -36,13 +36,17 @@ export default class CourseService {
     updateCourse = (id, course) => {
         console.log(this.coursesJSON);
         let temp = [];
-        for(var crs in this.coursesJSON) {
-            if(crs.id == id) {
+        var crs = {};
+        for(var i = 0; i < this.coursesJSON.length; i++) {
+            if(this.coursesJSON[i].id == id) {
                 crs.title = course.title;
                 crs.modifiedAt = course.modifiedAt;
                 crs.modules = course.modules;
+                temp.push(crs);
             }
-            temp.push(crs);
+            else {
+                temp.push(this.coursesJSON[i]);
+            }
         }
         this.coursesJSON = temp;
         console.log(this.coursesJSON);

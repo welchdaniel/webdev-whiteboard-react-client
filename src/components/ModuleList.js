@@ -21,7 +21,7 @@ const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModu
                     <FontAwesomeIcon icon={faPlus} />
                 </Button>
             </div>
-            <ul className="list-group row">
+            <ul className="list-group">
                 { modules.map((module, key) =>
                         <ModuleListItem
                             module={module}

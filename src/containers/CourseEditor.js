@@ -294,7 +294,7 @@ export default class CourseEditor extends React.Component {
                             <Dropdown 
                                 alignRight 
                                 className={this.state.selectedModule.id > 0 ? 
-                                    "float-right col-12 col-lg-2 mt-4 mt-sm-3 mt-0 mb-4 mb-sm-3 mb-0" : "row d-none"}>
+                                    "float-right col-12 col-lg-2 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "row d-none"}>
                                 <Dropdown.Toggle
                                     className="block-under-md"
                                     variant="warning">

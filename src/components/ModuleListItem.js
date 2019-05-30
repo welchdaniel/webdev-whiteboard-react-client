@@ -5,9 +5,9 @@ import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-ico
 
 const ModuleListItem = ({module, selectModule, editModule, deleteModule, selectedModule}) => {
     return(
-        <li className="row"
+        <li
             onClick={() => selectModule(module)}
-            className={module.id === selectedModule.id ? "list-group-item active" : "list-group-item"}>
+            className={module === selectedModule ? "list-group-item active" : "list-group-item"}>
             <a>
                 {module.title}
             </a>

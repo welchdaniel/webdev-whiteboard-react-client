@@ -7,7 +7,7 @@ const ModuleListItem = ({module, selectModule, editModule, deleteModule, selecte
     return(
         <li className="row"
             onClick={() => selectModule(module)}
-            className={module === selectedModule ? "list-group-item active" : "list-group-item"}>
+            className={module.id === selectedModule.id ? "list-group-item active" : "list-group-item"}>
             <a>
                 {module.title}
             </a>

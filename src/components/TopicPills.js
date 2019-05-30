@@ -11,7 +11,7 @@ const TopicPills = ({topics, selectedTopic, selectTopic}) => {
                     className="nav-item"
                     onClick={() => selectTopic(topic)}
                     key={key}>
-                <a className={topic === selectedTopic ? "nav-link active text-white" : "nav-link bg-light"}>
+                <a className={topic.id === selectedTopic.id ? "nav-link active text-white" : "nav-link bg-light"}>
                     {topic.title}
                 </a>
              </li>

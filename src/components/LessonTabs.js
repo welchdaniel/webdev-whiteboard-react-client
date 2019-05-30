@@ -8,7 +8,7 @@ const LessonTabs = ({lessons, selectedLesson, selectLesson, editTab, editingTab,
                     className="nav-item"
                     onClick={() => selectLesson(lesson)}
                     key={key}>
-                <a className={lesson === selectedLesson ? "nav-link active" : "nav-link bg-secondary"}>
+                <a className={lesson.id === selectedLesson.id ? "nav-link active" : "nav-link bg-secondary"}>
                     {lesson.title}
                 </a>
              </li>

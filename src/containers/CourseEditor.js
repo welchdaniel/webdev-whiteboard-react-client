@@ -19,6 +19,8 @@ export default class CourseEditor extends React.Component {
             courseId: courseId,
             course: this.course,
             modules: this.course.modules,
+            currentLessons: [],
+            currentTopics: [],
             moduleNewTitle: '',
             tabNewTitle: '',
             pillNewTitle: '',
@@ -122,12 +124,16 @@ export default class CourseEditor extends React.Component {
 
     selectModule = module => {
         let firstLesson = module.lessons.length > 0 ? module.lessons[0] : this.state.newLesson;
+        let shownTopics = [];
         let firstTopic = this.state.newTopic;
         if (module.lessons.length > 0 && module.lessons[0].topics.length > 0) {
-            firstTopic = module.lessons[0].topics[0]
+            shownTopics = module.lessons[0].topics
+            firstTopic = shownTopics[0]
         }
         this.setState({
             selectedModule: module,
+            currentLessons: module.lessons,
+            currentTopics: shownTopics,
             selectedLesson: firstLesson,
             selectedTopic: firstTopic
             }
@@ -257,10 +263,16 @@ export default class CourseEditor extends React.Component {
     deleteTab = id => {
         let newLessons = this.state.selectedModule.lessons.filter(lesson => lesson.id !== id)
         this.setState({
+            currentLessons: newLessons,
             selectedModule: {
+                id: this.state.selectedModule.id,
+                title: this.state.selectedModule.title,
                 lessons: newLessons
             }
         })
+        console.log(this.state.selectedModule);
+        this.updateModule();
+        console.log(this.state.modules);
     }
 
     deletePill = id => {
@@ -269,6 +281,18 @@ export default class CourseEditor extends React.Component {
             selectedLesson: {
                 topics: newTopics
             }
+        })
+    }
+
+    updateModule = () => {
+        let newModules = this.state.modules.map(mod => {
+            if(mod.id == this.state.selectedModule.id) {
+                mod.title = this.state.selectedModule.title;
+                mod.lessons = this.state.currentLessons;
+            }
+        })
+        this.setState({
+            modules: newModules
         })
     }
 

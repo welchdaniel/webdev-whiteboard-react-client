@@ -290,11 +290,11 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <div className="row ml-lg-2 mb-4 mb-lg-0">
+                        <div className="row ml-lg-2 mb-4 mb-md-0">
                             <Dropdown 
                                 alignRight 
                                 className={this.state.selectedModule.id > 0 ? 
-                                    "float-right col-12 col-lg-2 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "row d-none"}>
+                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "row d-none"}>
                                 <Dropdown.Toggle
                                     className="block-under-md"
                                     variant="warning">
@@ -323,18 +323,18 @@ export default class CourseEditor extends React.Component {
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Form inline className={this.state.selectedModule.id > 0 ? 
-                                    "col-12 col-lg-10" : "row d-none"}>
+                                    "col-12 col-md-9" : "row d-none"}>
                                 <Form.Control 
                                     type="text"
                                     onChange={this.tabTitleChanged}
                                     value={this.state.addedLesson.title}
                                     placeholder="New Lesson" 
-                                    className="mr-xs-2 ml-lg-3 col-9 col-sm-10 col-lg-9"
+                                    className="mr-xs-2 ml-lg-3 col-9 col-md-9 col-lg-9"
                                     id="new-lesson" />
                                 <Button 
                                     onClick={this.createLesson}
                                     variant="danger"
-                                    className="col-3 col-sm-2 col-lg-2">
+                                    className="col-3 col-md-3 col-lg-2">
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>
                             </Form>

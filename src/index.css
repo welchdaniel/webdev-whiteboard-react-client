@@ -2,5 +2,24 @@
     .block-under-md {
         display: block;
         width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center-under-md {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+    .block-under-md {
+        display: block;
+        width: 100%;
+    }
+
+    .center-under-md {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

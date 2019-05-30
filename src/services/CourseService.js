@@ -34,14 +34,20 @@ export default class CourseService {
     }
 
     updateCourse = (id, course) => {
-        this.coursesJSON = this.coursesJSON.filter(crs => crs.id !== id);
+        let updatedCourses = this.coursesJSON.map(crs => {
+            if(crs.id == id) {
+                crs.id = id;
+                crs.title = course.title;
+                crs.modifiedAt = course.modifiedAt;
+                crs.modules = course.modules;
+            }
+        })
+        this.coursesJSON = updatedCourses;
         return this.coursesJSON;
-
     }
 
     deleteCourse = id => {
         this.coursesJSON = this.coursesJSON.filter(crs => crs.id !== id);
         return this.coursesJSON;
-        
     }
 }

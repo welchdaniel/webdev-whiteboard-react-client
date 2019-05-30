@@ -54,6 +54,10 @@ export default class Whiteboard extends React.Component {
         })
     }
 
+    updateCourse = () => {
+        console.log(courseService.findAllCourses())
+    }
+
     getModificationTime = () => {
         let currDate = new Date();
         let day = currDate.getDate();
@@ -116,6 +120,7 @@ export default class Whiteboard extends React.Component {
                     <Route
                         path="/course/edit/:courseId"
                         render={() => <CourseEditor 
+                            updateCourse={this.updateCourse}
                             selectCourse={this.selectCourse}
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>}/>

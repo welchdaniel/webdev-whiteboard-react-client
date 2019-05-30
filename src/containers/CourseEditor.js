@@ -72,6 +72,7 @@ export default class CourseEditor extends React.Component {
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
         this.state.modules.push(this.state.addedModule)
+        this.state.course.modules = this.state.modules;
         this.setState({
             modules: this.state.modules,
             selectedModule: this.state.addedModule,
@@ -79,6 +80,7 @@ export default class CourseEditor extends React.Component {
                 title: ''
             }
         })
+        this.props.updateCourse();
     }
 
     //done
@@ -247,9 +249,11 @@ export default class CourseEditor extends React.Component {
 
 
     deleteModule = id => {
+        let newModules = this.state.modules.filter(module => module.id !== id)
         this.setState({
-            modules: this.state.modules.filter(module => module.id !== id)
+            modules: newModules
         })
+        this.props.updateCourse();
     }
 
     deleteTab = id => {

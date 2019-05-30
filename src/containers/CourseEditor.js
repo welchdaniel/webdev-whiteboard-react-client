@@ -80,12 +80,14 @@ export default class CourseEditor extends React.Component {
     }
 
     createLesson = () => {
-        console.log(this.selectedModule);
+        console.log(this.state.selectedModule);
         this.state.addedLesson.title = this.state.addedLesson.title == '' ? 'New Lesson' : this.state.addedLesson.title;
-        if (this.selectedModule !== undefined) {
-            this.state.selectedModule.lessons.push(this.state.addedLesson)
+        if (this.state.selectedModule !== undefined) {
+            this.state.selectedModule.lessons.push(this.state.addedLesson);
             this.setState({
                 selectedModule: {
+                    id: this.state.selectedModule.id,
+                    title: this.state.selectedModule.title,
                     lessons: this.state.selectedModule.lessons
                 },
                 addedLesson: {
@@ -154,6 +156,7 @@ export default class CourseEditor extends React.Component {
                 topics: []
             }
         })
+        console.log(this.state.addedLesson);
     }
 
     pillTitleChanged = (event) => {
@@ -320,7 +323,7 @@ export default class CourseEditor extends React.Component {
                                             className="col-12 col-lg-10 col-sm-9"
                                             id="new-topic" />
                                         <Button 
-                                            onClick={this.createLesson}
+                                            onClick={this.createTopic}
                                             variant="secondary"
                                             className="col-12 col-lg-2 col-sm-3">
                                             <FontAwesomeIcon icon={faPlus} />

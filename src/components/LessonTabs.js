@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const LessonTabs = ({lessons, selectedLesson, selectLesson, editTab, editingTab, deleteTab }) => {
     return(
         <ul className="nav nav-tabs mt-4 mt-lg-0 justify-content-center">
-            {lessons.map((lesson, key) => 
+            {lessons.map((lesson, key) => {
+                let numTabs = lessons.length;
+                return(
                 <li 
                     className="nav-item"
                     onClick={() => selectLesson(lesson)}
@@ -14,6 +16,8 @@ const LessonTabs = ({lessons, selectedLesson, selectLesson, editTab, editingTab,
                     {lesson.title}
                 </a>
              </li>
+                )
+            }
             )} 
         </ul>
     )

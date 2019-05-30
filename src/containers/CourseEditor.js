@@ -290,7 +290,7 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <div className="row ml-lg-2 mb-4 mb-md-0">
+                        <div className="row ml-lg-3 mb-4 mb-md-0">
                             <Dropdown 
                                 alignRight 
                                 className={this.state.selectedModule.id > 0 ? 
@@ -329,7 +329,7 @@ export default class CourseEditor extends React.Component {
                                     onChange={this.tabTitleChanged}
                                     value={this.state.addedLesson.title}
                                     placeholder="New Lesson" 
-                                    className="mr-xs-2 ml-lg-3 col-9 col-md-9 col-lg-9"
+                                    className="mr-xs-2 col-9 col-md-9 col-lg-9"
                                     id="new-lesson" />
                                 <Button 
                                     onClick={this.createLesson}

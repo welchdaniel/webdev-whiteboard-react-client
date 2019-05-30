@@ -73,6 +73,7 @@ export default class CourseEditor extends React.Component {
         this.state.modules.push(this.state.addedModule)
         this.setState({
             modules: this.state.modules,
+            selectedModule: this.state.addedModule,
             addedModule: {
                 title: ''
             }
@@ -89,6 +90,7 @@ export default class CourseEditor extends React.Component {
                     title: this.state.selectedModule.title,
                     lessons: this.state.selectedModule.lessons
                 },
+                selectedLesson: this.state.addedLesson,
                 addedLesson: {
                     title: ''
                 }
@@ -106,6 +108,7 @@ export default class CourseEditor extends React.Component {
                     title: this.state.selectedLesson.title,
                     topics: this.state.selectedLesson.topics
                 },
+                selectedTopic: this.state.addedTopic,
                 addedTopic: {
                     title: ''
                 }

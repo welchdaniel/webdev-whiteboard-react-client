@@ -80,7 +80,6 @@ export default class CourseEditor extends React.Component {
                 title: ''
             }
         })
-        this.props.updateCourse(this.course.id, this.course);
     }
 
     //done
@@ -253,7 +252,6 @@ export default class CourseEditor extends React.Component {
         this.setState({
             modules: newModules
         })
-        this.props.updateCourse(this.course.id, this.course);
     }
 
     deleteTab = id => {
@@ -274,12 +272,23 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    updateCourse = () => {
+        let updatedCourse = {
+            id: this.course.id,
+            title: this.course.title,
+            modifiedAt: this.course.modifiedAt,
+            modules: this.state.modules
+        }
+        this.props.updateCourse(updatedCourse.id, updatedCourse);
+    }
+
     render() {
         return(
             <div className="container-fluid">
                 <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                     <Link to="/course/grid">
                         <FontAwesomeIcon 
+                            onClick={this.updateCourse}
                             icon={faTimes}
                             className="fa-lg text-light mr-4"/>
                     </Link>

@@ -290,7 +290,7 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
-                        <div className="row ml-lg-3 mb-4 mb-md-0">
+                        <div className="row ml-lg-3 mt-2 mb-4 mb-md-0">
                             <Dropdown 
                                 alignRight 
                                 className={this.state.selectedModule.id > 0 ? 
@@ -343,7 +343,7 @@ export default class CourseEditor extends React.Component {
                 </Navbar>
 
 
-                <div className="row">
+                <div className="row mt-2">
                     <div className="col-6 col-md-3">
                     <ModuleList
                         editModule={this.editModule}

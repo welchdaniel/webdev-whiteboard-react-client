@@ -68,6 +68,7 @@ export default class CourseEditor extends React.Component {
         }
     }
 
+    //done
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
         this.state.modules.push(this.state.addedModule)
@@ -80,6 +81,7 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    //done
     createLesson = () => {
         this.state.addedLesson.title = this.state.addedLesson.title == '' ? 'New Lesson' : this.state.addedLesson.title;
         if (this.state.selectedModule !== undefined) {
@@ -98,6 +100,7 @@ export default class CourseEditor extends React.Component {
         }
     }
 
+    //done
     createTopic = () => {
         this.state.addedTopic.title = this.state.addedTopic.title == '' ? 'New Topic' : this.state.addedTopic.title;
         if (this.state.selectedLesson !== undefined) {
@@ -115,7 +118,6 @@ export default class CourseEditor extends React.Component {
             })
         }
     }
-
 
     selectModule = module => {
         let firstLesson = module.lessons.length > 0 ? module.lessons[0] : this.state.newLesson;
@@ -146,6 +148,7 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    //done
     titleChanged = (event) => {
         this.setState({
             addedModule: {
@@ -156,6 +159,7 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    //done
     tabTitleChanged = (event) => {
         this.setState({
             addedLesson: {
@@ -166,6 +170,7 @@ export default class CourseEditor extends React.Component {
         })
     }
 
+    //done
     pillTitleChanged = (event) => {
         this.setState({
             addedTopic: {
@@ -285,6 +290,35 @@ export default class CourseEditor extends React.Component {
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
                             lessons={this.state.selectedModule.lessons}/>
+                        <Dropdown 
+                            alignRight 
+                            className={this.state.selectedModule.id > 0 ? "float-right mr-xs-2 ml-lg-3" : "row d-none"}>
+                            <Dropdown.Toggle
+                                variant="warning">
+                                <FontAwesomeIcon 
+                                    icon={faPencilAlt}
+                                    className="mr-1"/>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={this.editTab}>
+                                        <span 
+                                            className="label">
+                                            <FontAwesomeIcon 
+                                                icon={faEdit}
+                                                className="mr-1"/>
+                                        </span>
+                                        Edit Selected Lesson
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                    <span className="label">
+                                        <FontAwesomeIcon 
+                                            icon={faTrashAlt}
+                                            className="mr-2"/>
+                                    </span>
+                                    Delete Selected Lesson
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                         <Form inline className={this.state.selectedModule.id > 0 ? "" : "row d-none"}>
                             <Form.Control 
                                 type="text"

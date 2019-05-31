@@ -145,7 +145,8 @@ export default class CourseEditor extends React.Component {
         let firstTopic = lesson.topics.length > 0 ? lesson.topics[0] : this.state.newTopic;
         this.setState({ 
             selectedLesson: lesson, 
-            selectedTopic: firstTopic
+            selectedTopic: firstTopic,
+            currentTopics: lesson.topics
             },
                 () => this.updateLesson()
         )

@@ -155,7 +155,8 @@ export default class CourseEditor extends React.Component {
 
     selectTopic = topic => {
         this.setState({
-            selectedTopic: topic
+            selectedTopic: topic,
+            editingPill: false
         })
     }
 
@@ -259,7 +260,7 @@ export default class CourseEditor extends React.Component {
             }
         })
         this.setState({
-            selectedLesson: this.state.selectedLesson.topics,
+            currentTopics: this.state.selectedLesson.topics,
             editingPill: false
         })
     }
@@ -467,7 +468,7 @@ export default class CourseEditor extends React.Component {
                     </div>
                     <div className="col-6 col-md-9 mt-2">
                         <div className="row justify-content-center justify-content-md-end">
-                            <Form inline className={this.state.selectedLesson.id > 0 ? 
+                            <Form inline className={(this.state.selectedLesson.id > 0) && !this.state.editingPill ? 
                                         "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
                                 <Form.Control 
                                     type="text"
@@ -479,6 +480,22 @@ export default class CourseEditor extends React.Component {
                                 <Button 
                                     onClick={this.createTopic}
                                     variant="secondary"
+                                    className="col-12 col-lg-2 col-sm-3">
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </Form>
+                            <Form inline className={(this.state.selectedLesson.id > 0) && this.state.editingPill ? 
+                                        "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
+                                <Form.Control 
+                                    type="text"
+                                    onChange={this.editPill}
+                                    value={this.state.pillNewTitle}
+                                    placeholder="Rename Topic" 
+                                    className="col-12 col-lg-10 col-sm-9"
+                                    id="new-topic" />
+                                <Button 
+                                    onClick={this.renamePill}
+                                    variant="success"
                                     className="col-12 col-lg-2 col-sm-3">
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>

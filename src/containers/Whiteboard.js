@@ -80,7 +80,9 @@ export default class Whiteboard extends React.Component {
             <Router>
                 <div className="container-fluid pt-5 mt-3">
                     <Navbar bg="primary" variant="dark" expand="sm" fixed="top">
-                        <Navbar.Brand href="#">Course Manager</Navbar.Brand>
+                        <Link to="/course/table">
+                        <Navbar.Brand>Course Manager</Navbar.Brand>
+                        </Link>
                         <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
                         <Navbar.Collapse id="webdev-navbar-nav">
                             <Nav className="mr-auto"/>

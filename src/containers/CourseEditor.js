@@ -75,9 +75,9 @@ export default class CourseEditor extends React.Component {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
         this.state.modules.push(this.state.addedModule)
         this.state.course.modules = this.state.modules;
+        this.selectModule(this.state.addedModule);
         this.setState({
             modules: this.state.modules,
-            selectedModule: this.state.addedModule,
             addedModule: {
                 title: ''
             }
@@ -279,6 +279,7 @@ export default class CourseEditor extends React.Component {
             selectedLesson: newSelectedLesson,
             currentLessons: filteredTabs
         },
+            () => this.selectModule(this.state.selectedModule),
             () => this.updateModule()
         )
     }

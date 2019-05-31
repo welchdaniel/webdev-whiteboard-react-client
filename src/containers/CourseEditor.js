@@ -261,15 +261,17 @@ export default class CourseEditor extends React.Component {
     }
 
     deleteTab = id => {
-        let newLessons = this.state.selectedModule.lessons.filter(lesson => lesson.id !== id)
+        let newLessons = this.state.currentLessons.filter(lesson => lesson.id !== id)
+        let updatedModule = {
+            id: this.state.selectedModule.id,
+            title: this.state.selectedModule.title,
+            lessons: newLessons
+        }
         this.setState({
             currentLessons: newLessons,
-            selectedModule: {
-                id: this.state.selectedModule.id,
-                title: this.state.selectedModule.title,
-                lessons: newLessons
-            }
+            selectedModule: updatedModule
         })
+        this.selectModule(updatedModule);
         this.updateModule();
     }
 
@@ -328,7 +330,7 @@ export default class CourseEditor extends React.Component {
                             editingTab={this.state.editingTab}
                             selectLesson={this.selectLesson}
                             selectedLesson={this.state.selectedLesson}
-                            lessons={this.state.selectedModule.lessons}/>
+                            lessons={this.state.currentLessons}/>
                         <div className="row ml-lg-3 mt-2 mb-4 mb-md-0">
                             <Dropdown 
                                 alignRight 

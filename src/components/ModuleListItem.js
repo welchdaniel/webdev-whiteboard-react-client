@@ -9,11 +9,11 @@ const ModuleListItem = ({module, selectModule, editModule, deleteModule, selecte
             onClick={() => selectModule(module)}
             className={module.id === selectedModule.id ? 
                 "list-group-item active row" : "list-group-item row"}>
-            <h6 className="align-middle">
+            <h6 className="align-middle mt-2 mt-lg-0">
                 {module.title}
                 <span className="label">
                     <Dropdown 
-                        className="float-lg-right">
+                        className="float-lg-right mt-4 mt-lg-0">
                         <Dropdown.Toggle
                             className="block-under-lg"
                             variant="warning">

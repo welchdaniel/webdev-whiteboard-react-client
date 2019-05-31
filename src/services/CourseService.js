@@ -51,7 +51,6 @@ export default class CourseService {
             }
         }
         this.coursesJSON = temp;
-        console.log(this.coursesJSON);
         return this.coursesJSON;
     }
 

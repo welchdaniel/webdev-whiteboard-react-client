@@ -191,7 +191,6 @@ export default class CourseEditor extends React.Component {
                 widgets: []
             }
         })
-        console.log(this.state.addedTopic);
     }
 
     editModule = event => {
@@ -222,12 +221,14 @@ export default class CourseEditor extends React.Component {
         this.setState({
             editingModule: false,
             editingTab: false,
-            editingPill: false
+            editingPill: false,
+            moduleNewTitle: '',
+            tabNewTitle: '',
+            pillNewTitle: ''
         })
     }
 
     renameModule = () => {
-        console.log(this.state.moduleNewTitle);
         this.state.modules.map((module) => {
             if (module.id == this.state.selectedModule.id) {
                 module.title = this.state.moduleNewTitle;
@@ -235,12 +236,12 @@ export default class CourseEditor extends React.Component {
         })
         this.setState({
             modules: this.state.modules,
-            editingModule: false
+            editingModule: false,
+            moduleNewTitle: ''
         })
     }
 
     renameTab = () => {
-        console.log(this.state.tabNewTitle);
         this.state.currentLessons.map((lesson) => {
             if (lesson.id == this.state.selectedLesson.id) {
                 lesson.title = this.state.tabNewTitle;
@@ -248,12 +249,12 @@ export default class CourseEditor extends React.Component {
         })
         this.setState({
             currentLessons: this.state.currentLessons,
-            editingTab: false
+            editingTab: false,
+            tabNewTitle: ''
         })
     }
 
     renamePill = () => {
-        console.log(this.state.pillNewTitle);
         this.state.selectedLesson.topics.map((topic) => {
             if (topic.id == this.state.selectedTopic.id) {
                 topic.title = this.state.pillNewTitle;
@@ -261,7 +262,8 @@ export default class CourseEditor extends React.Component {
         })
         this.setState({
             currentTopics: this.state.selectedLesson.topics,
-            editingPill: false
+            editingPill: false,
+            pillNewTitle: ''
         })
     }
 
@@ -458,6 +460,7 @@ export default class CourseEditor extends React.Component {
                             editingModule={this.state.editingModule}
                             stopEditing={this.stopEditing}
                             renameModule={this.renameModule}
+                            editingTitle={this.state.moduleNewTitle}
                             moduleTitle={this.state.addedModule.title}
                             titleChanged={this.titleChanged}
                             createModule={this.createModule}

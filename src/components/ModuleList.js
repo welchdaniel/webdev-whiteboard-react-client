@@ -4,7 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from 'react-bootstrap'
 
-const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModule, selectModule, titleChanged, createModule, deleteModule, selectedModule}) => {
+const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModule, stopEditing, selectModule, titleChanged, createModule, deleteModule, selectedModule}) => {
     return(
         <div className="container-fluid">
             <div className="row mb-3 mt-2">
@@ -45,6 +45,13 @@ const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModu
                     type="text"
                     variant="danger">
                     <FontAwesomeIcon icon={faPlus} />
+                </Button>
+                <Button 
+                    className="col-12 justify-content-end"
+                    onClick={stopEditing}
+                    type="text"
+                    variant="secondary">
+                    Cancel
                 </Button>
             </div>
         </div>

@@ -146,7 +146,8 @@ export default class CourseEditor extends React.Component {
         this.setState({ 
             selectedLesson: lesson, 
             selectedTopic: firstTopic,
-            currentTopics: lesson.topics
+            currentTopics: lesson.topics,
+            editingTab: false
             },
                 () => this.updateLesson()
         )
@@ -206,7 +207,6 @@ export default class CourseEditor extends React.Component {
             editingTab: true,
             tabNewTitle: titleInput
         })
-        console.log(this.state.editingTab);
     }
 
     editPill = event => {
@@ -214,6 +214,14 @@ export default class CourseEditor extends React.Component {
         this.setState({
             editingPill: true,
             pillNewTitle: titleInput
+        })
+    }
+
+    stopEditing = () => {
+        this.setState({
+            editingModule: false,
+            editingTab: false,
+            editingPill: false
         })
     }
 
@@ -447,6 +455,7 @@ export default class CourseEditor extends React.Component {
                         <ModuleList
                             editModule={this.editModule}
                             editingModule={this.state.editingModule}
+                            stopEditing={this.stopEditing}
                             renameModule={this.renameModule}
                             moduleTitle={this.state.addedModule.title}
                             titleChanged={this.titleChanged}

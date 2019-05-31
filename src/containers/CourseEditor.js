@@ -146,7 +146,8 @@ export default class CourseEditor extends React.Component {
         this.setState({ 
             selectedLesson: lesson, 
             selectedTopic: firstTopic
-            }
+            },
+                () => this.updateLesson()
         )
     }
 
@@ -285,12 +286,41 @@ export default class CourseEditor extends React.Component {
     }
 
     deletePill = id => {
-        let newTopics = this.state.selectedLesson.topics.filter(topic => topic.id !== id)
+        let filteredTopics = this.state.currentTopics.filter(topic => topic.id !== id)
+        let newSelectedTopic = {
+            id: -1,
+            title: '',
+            widgets: []
+        }
+        if(filteredTopics.length > 0) {
+            newSelectedTopic = filteredTopics[0];
+        }
         this.setState({
             selectedLesson: {
-                topics: newTopics
+                id: this.state.selectedLesson.id,
+                title: this.state.selectedLesson.title,
+                topics: filteredTopics
+            },
+            selectedTopic: newSelectedTopic,
+            currentTopics: filteredTopics
+        },
+            () => this.selectLesson(this.state.selectedLesson)
+        )
+    }
+
+    updateLesson = () => {
+        let newLessons = this.state.currentLessons.map(les => {
+            if(les.id == this.state.selectedLesson.id) {
+                les.title = this.state.selectedLesson.title;
+                les.topics = this.state.currentTopics;
             }
+            return les;
         })
+        this.setState({
+            currentLessons: newLessons
+        },
+            () => this.updateModule()
+        )
     }
 
     updateModule = () => {
@@ -343,7 +373,8 @@ export default class CourseEditor extends React.Component {
                             <Dropdown 
                                 alignRight 
                                 className={this.state.currentLessons.length > 0 ? 
-                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "col-12 col-md-3 invisible"}>
+                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" 
+                                    : "col-12 col-md-3 invisible"}>
                                 <Dropdown.Toggle
                                     className="block-under-md"
                                     variant="warning">
@@ -448,7 +479,7 @@ export default class CourseEditor extends React.Component {
                                             Edit Selected Topic
                                     </Dropdown.Item>
                                     <Dropdown.Item 
-                                        onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                        onClick={() => this.deletePill(this.state.selectedTopic.id)}>
                                         <span className="label">
                                             <FontAwesomeIcon 
                                                 icon={faTrashAlt}

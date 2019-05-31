@@ -88,12 +88,12 @@ export default class CourseEditor extends React.Component {
     createLesson = () => {
         this.state.addedLesson.title = this.state.addedLesson.title == '' ? 'New Lesson' : this.state.addedLesson.title;
         if (this.state.selectedModule !== undefined) {
-            this.state.selectedModule.lessons.push(this.state.addedLesson);
+            this.state.currentLessons.push(this.state.addedLesson);
             this.setState({
                 selectedModule: {
                     id: this.state.selectedModule.id,
                     title: this.state.selectedModule.title,
-                    lessons: this.state.selectedModule.lessons
+                    lessons: this.state.currentLessons
                 },
                 selectedLesson: this.state.addedLesson,
                 addedLesson: {
@@ -147,6 +147,7 @@ export default class CourseEditor extends React.Component {
             selectedTopic: firstTopic
             }
         )
+        console.log(this.state.selectedLesson.id);
     }
 
     selectTopic = topic => {
@@ -228,13 +229,13 @@ export default class CourseEditor extends React.Component {
 
     renameTab = () => {
         console.log(this.state.tabNewTitle);
-        this.state.selectedModule.lessons.map((lesson) => {
+        this.state.currentLessons.map((lesson) => {
             if (lesson.id == this.state.selectedLesson.id) {
                 lesson.title = this.state.tabNewTitle;
             }
         })
         this.setState({
-            selectedModule: this.state.selectedModule.lessons,
+            selectedModule: this.state.currentLessons,
             editingTab: false
         })
     }
@@ -261,18 +262,24 @@ export default class CourseEditor extends React.Component {
     }
 
     deleteTab = id => {
-        let newLessons = this.state.currentLessons.filter(lesson => lesson.id !== id)
-        let updatedModule = {
-            id: this.state.selectedModule.id,
-            title: this.state.selectedModule.title,
-            lessons: newLessons
+        console.log(id);
+        console.log(this.state.currentLessons);
+        let filteredTabs = this.state.currentLessons.filter(ls => ls.id !== id);
+        console.log(filteredTabs);
+        let newSelectedLesson = undefined;
+        if(this.state.currentLessons.length > 0) {
+            newSelectedLesson = this.state.currentLessons[0];
         }
+        console.log(this.state.currentLessons);
         this.setState({
-            currentLessons: newLessons,
-            selectedModule: updatedModule
+            selectedModule: {
+                id: this.state.selectedModule.id,
+                title: this.state.selectedModule.title,
+                lessons: filteredTabs
+            },
+            selectedLesson: newSelectedLesson,
+            currentLessons: filteredTabs
         })
-        this.selectModule(updatedModule);
-        this.updateModule();
     }
 
     deletePill = id => {

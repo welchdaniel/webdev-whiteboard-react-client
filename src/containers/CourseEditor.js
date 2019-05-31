@@ -409,24 +409,55 @@ export default class CourseEditor extends React.Component {
                     </div>
                     <div className="col-6 col-md-9 mt-2">
                         <div className="container-fluid">
-                            <div className="row justify-content-end">
-                                <div className="col-12 col-md-4">
-                                    <Form inline className={this.state.selectedModule.id > 0 ? "row mb-3" : "d-none"}>
-                                        <Form.Control 
-                                            type="text"
-                                            onChange={this.pillTitleChanged}
-                                            value={this.state.addedTopic.title}
-                                            placeholder="New Topic" 
-                                            className="col-12 col-lg-10 col-sm-9"
-                                            id="new-topic" />
-                                        <Button 
-                                            onClick={this.createTopic}
-                                            variant="secondary"
-                                            className="col-12 col-lg-2 col-sm-3">
-                                            <FontAwesomeIcon icon={faPlus} />
-                                        </Button>
-                                    </Form>
-                                </div>
+                            <div className="row justify-content-center justify-content-md-end">
+                                <Form inline className={this.state.selectedLesson.id > 0 ? 
+                                            "row col-12 col-md-4 mb-3" : "d-none"}>
+                                    <Form.Control 
+                                        type="text"
+                                        onChange={this.pillTitleChanged}
+                                        value={this.state.addedTopic.title}
+                                        placeholder="New Topic" 
+                                        className="col-12 col-lg-10 col-sm-9"
+                                        id="new-topic" />
+                                    <Button 
+                                        onClick={this.createTopic}
+                                        variant="secondary"
+                                        className="col-12 col-lg-2 col-sm-3">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
+                                <Dropdown 
+                                    alignRight 
+                                    className={this.state.selectedTopic.id > 0 ? 
+                                        "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "col-12 col-md-3 invisible"}>
+                                    <Dropdown.Toggle
+                                        className="block-under-md"
+                                        variant="warning">
+                                        <FontAwesomeIcon 
+                                            icon={faPencilAlt}
+                                            className="mr-1"/>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item onClick={this.editPill}>
+                                                <span 
+                                                    className="label">
+                                                    <FontAwesomeIcon 
+                                                        icon={faEdit}
+                                                        className="mr-1"/>
+                                                </span>
+                                                Edit Selected Topic
+                                        </Dropdown.Item>
+                                        <Dropdown.Item 
+                                            onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                            <span className="label">
+                                                <FontAwesomeIcon 
+                                                    icon={faTrashAlt}
+                                                    className="mr-2"/>
+                                            </span>
+                                            Delete Selected Topic
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
                                 <div className="col-12">
                                     <TopicPills
                                         topics={this.state.selectedLesson.topics}

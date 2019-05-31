@@ -433,13 +433,13 @@ export default class CourseEditor extends React.Component {
                                     "col-12 col-md-9" : "row d-none"}>
                                 <Form.Control 
                                     type="text"
-                                    onChange={this.tabTitleChanged}
-                                    value={this.state.addedLesson.title}
+                                    onChange={this.editTab}
+                                    value={this.state.tabNewTitle}
                                     placeholder="Rename Lesson" 
                                     className="mr-xs-2 col-9 col-md-9 col-lg-9"
                                     id="new-lesson" />
                                 <Button 
-                                    onClick={this.createLesson}
+                                    onClick={this.renameTab}
                                     variant="success"
                                     className="col-3 col-md-3 col-lg-2">
                                     <FontAwesomeIcon icon={faPlus} />

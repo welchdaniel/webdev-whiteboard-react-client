@@ -47,7 +47,7 @@ const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingModu
                     <FontAwesomeIcon icon={faPlus} />
                 </Button>
                 <Button 
-                    className="col-12 justify-content-end"
+                    className="col-12"
                     onClick={stopEditing}
                     type="text"
                     variant="secondary">

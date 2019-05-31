@@ -34,7 +34,6 @@ export default class Whiteboard extends React.Component {
                 title: ''
             }
         })
-        console.log(this.state.courses)
     }
 
     deleteCourse = (id) => {
@@ -59,7 +58,6 @@ export default class Whiteboard extends React.Component {
         this.setState({
             courses: courseService.findAllCourses()
         })
-        console.log(courseService.findAllCourses())
     }
 
     getModificationTime = () => {

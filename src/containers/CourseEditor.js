@@ -296,7 +296,6 @@ export default class CourseEditor extends React.Component {
             }
             return mod;
         })
-        console.log(newModules);
         this.setState({
             modules: newModules
         },
@@ -338,8 +337,8 @@ export default class CourseEditor extends React.Component {
                         <div className="row ml-lg-3 mt-2 mb-4 mb-md-0">
                             <Dropdown 
                                 alignRight 
-                                className={this.state.selectedModule.id > 0 ? 
-                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "row d-none"}>
+                                className={this.state.currentLessons.length > 0 ? 
+                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "col-12 col-md-3 invisible"}>
                                 <Dropdown.Toggle
                                     className="block-under-md"
                                     variant="warning">

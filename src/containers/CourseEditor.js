@@ -147,7 +147,6 @@ export default class CourseEditor extends React.Component {
             selectedTopic: firstTopic
             }
         )
-        console.log(this.state.selectedLesson.id);
     }
 
     selectTopic = topic => {
@@ -262,15 +261,11 @@ export default class CourseEditor extends React.Component {
     }
 
     deleteTab = id => {
-        console.log(id);
-        console.log(this.state.currentLessons);
         let filteredTabs = this.state.currentLessons.filter(ls => ls.id !== id);
-        console.log(filteredTabs);
         let newSelectedLesson = undefined;
-        if(this.state.currentLessons.length > 0) {
-            newSelectedLesson = this.state.currentLessons[0];
+        if(filteredTabs.length > 0) {
+            newSelectedLesson = filteredTabs[0];
         }
-        console.log(this.state.currentLessons);
         this.setState({
             selectedModule: {
                 id: this.state.selectedModule.id,
@@ -279,7 +274,9 @@ export default class CourseEditor extends React.Component {
             },
             selectedLesson: newSelectedLesson,
             currentLessons: filteredTabs
-        })
+        },
+            () => this.updateModule()
+        )
     }
 
     deletePill = id => {
@@ -292,7 +289,6 @@ export default class CourseEditor extends React.Component {
     }
 
     updateModule = () => {
-        console.log(this.state.modules);
         let newModules = this.state.modules.map(mod => {
             if(mod.id == this.state.selectedModule.id) {
                 mod.title = this.state.selectedModule.title;
@@ -300,11 +296,12 @@ export default class CourseEditor extends React.Component {
             }
             return mod;
         })
+        console.log(newModules);
         this.setState({
             modules: newModules
-        })
-        this.updateCourse();
-        console.log(newModules);
+        },
+            () => this.updateCourse()
+        )
     }
 
     updateCourse = () => {
@@ -360,7 +357,8 @@ export default class CourseEditor extends React.Component {
                                             </span>
                                             Edit Selected Lesson
                                     </Dropdown.Item>
-                                    <Dropdown.Item onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                    <Dropdown.Item 
+                                        onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
                                         <span className="label">
                                             <FontAwesomeIcon 
                                                 icon={faTrashAlt}

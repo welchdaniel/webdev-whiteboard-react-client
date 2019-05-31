@@ -246,7 +246,7 @@ export default class CourseEditor extends React.Component {
             }
         })
         this.setState({
-            selectedModule: this.state.currentLessons,
+            currentLessons: this.state.currentLessons,
             editingTab: false
         })
     }

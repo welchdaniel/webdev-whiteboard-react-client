@@ -410,7 +410,7 @@ export default class CourseEditor extends React.Component {
                     <div className="col-6 col-md-9 mt-2">
                         <div className="row justify-content-center justify-content-md-end">
                             <Form inline className={this.state.selectedLesson.id > 0 ? 
-                                        "row col-12 col-md-4 mb-3" : "d-none"}>
+                                        "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
                                 <Form.Control 
                                     type="text"
                                     onChange={this.pillTitleChanged}
@@ -428,7 +428,8 @@ export default class CourseEditor extends React.Component {
                             <Dropdown 
                                 alignRight 
                                 className={this.state.selectedTopic.id > 0 ? 
-                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" : "col-12 col-md-3 invisible"}>
+                                    "float-right col-12 col-md-2 col-lg-1 mt-3 mt-md-0 mb-4 mb-sm-3 mb-lg-0" 
+                                    : "col-12 col-md-2 col-lg-1 invisible"}>
                                 <Dropdown.Toggle
                                     className="block-under-md"
                                     variant="warning">

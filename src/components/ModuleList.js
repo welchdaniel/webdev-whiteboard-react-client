@@ -35,13 +35,13 @@ const ModuleList = ({modules, moduleTitle, editModule, renameModule, editingTitl
             </ul>
             <div className={editingModule ? "row mb-3 mt-2" : "d-none"}>
                 <input 
-                    className="col-10 form-control"
+                    className="col-12 col-lg-10 col-sm-9 form-control"
                     placeholder="Rename Module"
                     value={editingTitle}
                     onChange={editModule}>
                 </input>
                 <Button 
-                    className="col-2"
+                    className="col-12 col-lg-2 col-sm-3"
                     onClick={renameModule}
                     type="text"
                     variant="danger">

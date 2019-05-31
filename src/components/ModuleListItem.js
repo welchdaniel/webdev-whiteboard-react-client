@@ -7,7 +7,7 @@ const ModuleListItem = ({module, selectModule, editModule, deleteModule, selecte
     return(
         <li
             onClick={() => selectModule(module)}
-            className={module.id === selectedModule.id ? 
+            className={module.id == selectedModule.id ? 
                 "list-group-item active row" : "list-group-item row"}>
             <h6 className="align-middle mt-2 mt-lg-0">
                 {module.title}

@@ -269,10 +269,20 @@ export default class CourseEditor extends React.Component {
 
 
     deleteModule = id => {
-        let newModules = this.state.modules.filter(module => module.id !== id)
+        let filteredModules = this.state.modules.filter(module => module.id !== id)
+        let newSelectedModule = {
+            id: -1,
+            title: '',
+            lessons: []
+        }
+        if(filteredModules.length > 0) {
+            newSelectedModule = filteredModules[0];
+        }
         this.setState({
-            modules: newModules
-        })
+            modules: filteredModules
+        },
+            () => this.selectModule(newSelectedModule)
+        )
     }
 
     deleteTab = id => {

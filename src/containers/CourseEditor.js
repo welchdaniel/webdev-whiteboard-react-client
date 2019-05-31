@@ -262,7 +262,11 @@ export default class CourseEditor extends React.Component {
 
     deleteTab = id => {
         let filteredTabs = this.state.currentLessons.filter(ls => ls.id !== id);
-        let newSelectedLesson = undefined;
+        let newSelectedLesson = {
+            id:-1,
+            title: '',
+            topics: []
+        };
         if(filteredTabs.length > 0) {
             newSelectedLesson = filteredTabs[0];
         }

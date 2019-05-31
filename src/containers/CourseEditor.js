@@ -270,9 +270,7 @@ export default class CourseEditor extends React.Component {
                 lessons: newLessons
             }
         })
-        console.log(this.state.selectedModule);
         this.updateModule();
-        console.log(this.state.modules);
     }
 
     deletePill = id => {
@@ -285,15 +283,19 @@ export default class CourseEditor extends React.Component {
     }
 
     updateModule = () => {
+        console.log(this.state.modules);
         let newModules = this.state.modules.map(mod => {
             if(mod.id == this.state.selectedModule.id) {
                 mod.title = this.state.selectedModule.title;
                 mod.lessons = this.state.currentLessons;
             }
+            return mod;
         })
         this.setState({
             modules: newModules
         })
+        this.updateCourse();
+        console.log(newModules);
     }
 
     updateCourse = () => {

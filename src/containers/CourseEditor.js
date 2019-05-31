@@ -136,7 +136,8 @@ export default class CourseEditor extends React.Component {
             currentTopics: shownTopics,
             selectedLesson: firstLesson,
             selectedTopic: firstTopic
-            }
+            }, 
+                () => this.updateModule()
         )
     }
 
@@ -279,8 +280,7 @@ export default class CourseEditor extends React.Component {
             selectedLesson: newSelectedLesson,
             currentLessons: filteredTabs
         },
-            () => this.selectModule(this.state.selectedModule),
-            () => this.updateModule()
+            () => this.selectModule(this.state.selectedModule)
         )
     }
 

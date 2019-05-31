@@ -205,6 +205,7 @@ export default class CourseEditor extends React.Component {
             editingTab: true,
             tabNewTitle: titleInput
         })
+        console.log(this.state.editingTab);
     }
 
     editPill = event => {
@@ -403,7 +404,7 @@ export default class CourseEditor extends React.Component {
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Form inline className={this.state.selectedModule.id > 0 ? 
+                            <Form inline className={(this.state.selectedModule.id > 0) && !this.state.editingTab ? 
                                     "col-12 col-md-9" : "row d-none"}>
                                 <Form.Control 
                                     type="text"
@@ -415,6 +416,22 @@ export default class CourseEditor extends React.Component {
                                 <Button 
                                     onClick={this.createLesson}
                                     variant="danger"
+                                    className="col-3 col-md-3 col-lg-2">
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </Form>
+                            <Form inline className={(this.state.selectedModule.id > 0) && this.state.editingTab ? 
+                                    "col-12 col-md-9" : "row d-none"}>
+                                <Form.Control 
+                                    type="text"
+                                    onChange={this.tabTitleChanged}
+                                    value={this.state.addedLesson.title}
+                                    placeholder="Rename Lesson" 
+                                    className="mr-xs-2 col-9 col-md-9 col-lg-9"
+                                    id="new-lesson" />
+                                <Button 
+                                    onClick={this.createLesson}
+                                    variant="success"
                                     className="col-3 col-md-3 col-lg-2">
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>

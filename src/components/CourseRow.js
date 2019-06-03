@@ -5,14 +5,13 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-const CourseRow = ({course, selectCourse, deleteCourse, closeNav}) => {
+const CourseRow = ({course, selectCourse, deleteCourse}) => {
     return(
         <tr className="row">
             <td className="col-sm-5 col-9">
             <Link 
                 to={`/course/edit/${course.id}`}
-                className="text-dark"
-                onClick={closeNav}>
+                className="text-dark">
                 <span className="label">
                     <FontAwesomeIcon 
                         icon={faFileAlt} 
@@ -41,8 +40,7 @@ const CourseRow = ({course, selectCourse, deleteCourse, closeNav}) => {
                     <Dropdown.Menu
                         alignRight>
                         <LinkContainer 
-                            to={`/course/edit/${course.id}`}
-                            onClick={closeNav}>
+                            to={`/course/edit/${course.id}`}>
                         <Dropdown.Item>
                                 <span 
                                     className="label">

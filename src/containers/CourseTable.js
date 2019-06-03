@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CourseTable = ({courses, selectCourse, deleteCourse, closeNav}) => {
     return(
-        <div>
+        <div onClick={closeNav}>
             <table className="table">
                 <thead>
                 <tr className="row">
@@ -42,7 +42,6 @@ const CourseTable = ({courses, selectCourse, deleteCourse, closeNav}) => {
                         <CourseRow 
                             selectCourse={selectCourse}
                             deleteCourse={deleteCourse}
-                            closeNav={closeNav}
                             course={course}
                             key={course.id}/>
                         )

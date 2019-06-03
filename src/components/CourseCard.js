@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { faFileAlt, faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CourseCard = ({course, selectCourse, deleteCourse, closeNav}) => {
+const CourseCard = ({course, selectCourse, deleteCourse}) => {
     return(
         <div
             className="mt-4 col-lg-2 col-md-4 col-sm-12">
@@ -13,8 +13,7 @@ const CourseCard = ({course, selectCourse, deleteCourse, closeNav}) => {
             className="card"
             styles={{width: '18rem'}}>
             <LinkContainer 
-                to={`/course/edit/${course.id}`}
-                onClick={closeNav}>
+                to={`/course/edit/${course.id}`}>
             <img 
                 className="card-img-top"
                 src="https://picsum.photos/300/200"
@@ -22,8 +21,7 @@ const CourseCard = ({course, selectCourse, deleteCourse, closeNav}) => {
             </LinkContainer>
             <div className="card-body">
                     <Link 
-                        to={`/course/edit/${course.id}`}
-                        onClick={closeNav} 
+                        to={`/course/edit/${course.id}`} 
                         className="row text-dark">
                             <h5 className="card-title">{course.title}</h5>
                     </Link>
@@ -47,8 +45,7 @@ const CourseCard = ({course, selectCourse, deleteCourse, closeNav}) => {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <LinkContainer 
-                                    to={`/course/edit/${course.id}`}
-                                    onClick={closeNav}>
+                                    to={`/course/edit/${course.id}`}>
                                 <Dropdown.Item>
                                         <span className="label">
                                             <FontAwesomeIcon 

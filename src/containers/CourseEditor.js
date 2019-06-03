@@ -24,6 +24,7 @@ export default class CourseEditor extends React.Component {
             moduleNewTitle: '',
             tabNewTitle: '',
             pillNewTitle: '',
+            editorNavExpanded: false,
             selectedModule: {
                 id: -1,
                 title: '',
@@ -361,6 +362,14 @@ export default class CourseEditor extends React.Component {
         )
     }
 
+    setEditorNavExpanded = (expanded) => {
+        this.setState({ editorNavExpanded: expanded });
+    }
+
+    closeEditorNav = () => {
+        this.setState({ editorNavExpanded: false });
+    }
+
     updateCourse = () => {
         let updatedCourse = {
             id: this.course.id,
@@ -374,17 +383,28 @@ export default class CourseEditor extends React.Component {
     render() {
         return(
             <div className="container-fluid">
-                <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-                    <Link to="/course/grid">
+                <Navbar bg="dark" 
+                        variant="dark" 
+                        expand="lg" 
+                        fixed="top"
+                        onToggle={this.setEditorNavExpanded}
+                        expanded={this.state.editorNavExpanded}>
+                    <Link to="/course/grid" className={this.state.editorNavExpanded ? "d-none" : ""}>
                         <FontAwesomeIcon 
                             onClick={this.updateCourse}
                             icon={faTimes}
-                            className="fa-lg text-light mr-5 mr-lg-4"/>
+                            className="fa-lg text-danger mr-5 mr-lg-4"/>
                     </Link>
+                    <FontAwesomeIcon 
+                        onClick={this.closeEditorNav}
+                        icon={faTimes}
+                        className={this.state.editorNavExpanded ? 
+                            "fa-lg text-light mr-5 mr-lg-4" : "d-none"}>
+                    </FontAwesomeIcon>
                     <Navbar.Brand href="#">{this.state.course.title}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
                     <Navbar.Collapse id="webdev-navbar-nav">
-                        <Nav className="mr-auto"/>
+                        <Nav className="mr-auto" onSelect={this.closeEditorNav}/>
                         <LessonTabs inline
                             deleteTab={this.deleteTab}
                             editTab={this.editTab}
@@ -463,7 +483,7 @@ export default class CourseEditor extends React.Component {
                 </Navbar>
 
 
-                <div className="row mt-2">
+                <div className="row mt-2" onClick={this.closeEditorNav}>
                     <div className="col-6 col-md-3">
                         <ModuleList
                             editModule={this.editModule}

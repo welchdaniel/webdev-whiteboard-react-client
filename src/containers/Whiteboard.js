@@ -89,8 +89,12 @@ export default class Whiteboard extends React.Component {
         return (
             <Router>
                 <div className="container-fluid pt-5 mt-3">
-                    <Navbar bg="primary" variant="dark" expand="sm" fixed="top" onToggle={this.setNavExpanded}
-                expanded={this.state.navExpanded}>
+                    <Navbar bg="primary" 
+                            variant="dark" 
+                            expand="sm" 
+                            fixed="top" 
+                            onToggle={this.setNavExpanded}
+                            expanded={this.state.navExpanded}>
                         <Link to="/course/table">
                         <Navbar.Brand>Course Manager</Navbar.Brand>
                         </Link>

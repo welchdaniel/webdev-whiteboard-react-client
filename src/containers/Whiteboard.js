@@ -16,6 +16,7 @@ export default class Whiteboard extends React.Component {
         this.state = {
             courses: initialCourses,
             selectedCourse: initialCourses[0],
+            navExpanded: false,
             addedCourse: {
                 id: -1,
                 title: '',
@@ -34,6 +35,7 @@ export default class Whiteboard extends React.Component {
                 title: ''
             }
         })
+        this.closeNav();
     }
 
     deleteCourse = (id) => {
@@ -51,6 +53,14 @@ export default class Whiteboard extends React.Component {
                 modules: []
             }
         })
+    }
+
+    setNavExpanded = (expanded) => {
+        this.setState({ navExpanded: expanded });
+    }
+    
+    closeNav = () => {
+        this.setState({ navExpanded: false });
     }
 
     updateCourse = (id, course) => {
@@ -79,13 +89,14 @@ export default class Whiteboard extends React.Component {
         return (
             <Router>
                 <div className="container-fluid pt-5 mt-3">
-                    <Navbar bg="primary" variant="dark" expand="sm" fixed="top">
+                    <Navbar bg="primary" variant="dark" expand="sm" fixed="top" onToggle={this.setNavExpanded}
+                expanded={this.state.navExpanded}>
                         <Link to="/course/table">
                         <Navbar.Brand>Course Manager</Navbar.Brand>
                         </Link>
                         <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
                         <Navbar.Collapse id="webdev-navbar-nav">
-                            <Nav className="mr-auto"/>
+                            <Nav className="mr-auto" onSelect={this.closeNav}/>
                             <div className="row">
                                 <Form inline
                                     className="col-12 center-under-md mt-3 mb-3 mt-sm-0 mb-sm-0">
@@ -115,11 +126,13 @@ export default class Whiteboard extends React.Component {
                         render={() => <CourseTable
                             selectCourse={this.selectCourse}
                             deleteCourse={this.deleteCourse}
+                            closeNav={this.closeNav}
                             courses={this.state.courses}/>}/>
                     <Route path="/course/grid"
                         render={() => <CourseGrid
                             selectCourse={this.selectCourse}
                             deleteCourse={this.deleteCourse}
+                            closeNav={this.closeNav}
                             courses={this.state.courses}/>}/>
                     <Route
                         path="/course/edit/:courseId"

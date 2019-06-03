@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { faList, faSortAlphaDown, faCaretDown, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
+const CourseGrid = ({courses, selectCourse, deleteCourse, closeNav}) => {
     return(
         <div className="container-responsive">
             <h6 className="row mt-4 font-weight-bold">
@@ -41,6 +41,7 @@ const CourseGrid = ({courses, selectCourse, deleteCourse}) => {
                     <CourseCard 
                         selectCourse={selectCourse}
                         deleteCourse={deleteCourse}
+                        closeNav={closeNav}
                         course={course}
                         key={course.id}/>
                     )

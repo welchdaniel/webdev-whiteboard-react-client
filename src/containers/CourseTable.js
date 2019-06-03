@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { faGripHorizontal, faSortAlphaDown, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CourseTable = ({courses, selectCourse, deleteCourse}) => {
+const CourseTable = ({courses, selectCourse, deleteCourse, closeNav}) => {
     return(
         <div>
             <table className="table">
@@ -42,6 +42,7 @@ const CourseTable = ({courses, selectCourse, deleteCourse}) => {
                         <CourseRow 
                             selectCourse={selectCourse}
                             deleteCourse={deleteCourse}
+                            closeNav={closeNav}
                             course={course}
                             key={course.id}/>
                         )

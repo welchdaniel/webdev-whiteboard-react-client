@@ -10,7 +10,6 @@ import WidgetListComponent from '../components/WidgetListComponent';
 import WidgetService from '../services/WidgetService';
 
 let widgetService = WidgetService.getInstance();
-const initialWidgets = widgetService.findAllWidgets();
 
 export default class CourseEditor extends React.Component {
     constructor(props) {
@@ -46,6 +45,16 @@ export default class CourseEditor extends React.Component {
                 title: '',
                 widgets: []
             },
+            testWidget: {
+                id: 45,
+                name: 'foo',
+                type: 'HEADING'
+            },
+            testWidget2: {
+                id: 45,
+                name: 'poo',
+                type: 'HEADING'
+            },
             editingModule: false,
             editingTab: false,
             editingPill: false,
@@ -75,6 +84,18 @@ export default class CourseEditor extends React.Component {
                 widgets: []
             },
         }
+    }
+
+    logWidgets = () => {
+        //widgetService.findAllWidgets();
+        //widgetService.createWidget(this.state.testWidget);
+        //widgetService.findAllWidgets();
+        //widgetService.findWidgetById(45);
+        //widgetService.findAllWidgets();
+        //widgetService.updateWidget(45, this.state.testWidget2);
+        //widgetService.findAllWidgets();
+        //widgetService.deleteWidget(123);
+        //widgetService.findAllWidgets();
     }
 
     //done
@@ -580,6 +601,12 @@ export default class CourseEditor extends React.Component {
                                     selectTopic={this.selectTopic}/>
                             </div>
                         </div>
+                        <Button 
+                            onClick={this.logWidgets}
+                            variant="danger"
+                            className="col-3 col-md-3 col-lg-2">
+                            <FontAwesomeIcon icon={faPlus} />
+                        </Button>
                         <div>
                             <WidgetListComponent
                                 widgets={this.state.widgets}/>

@@ -1,6 +1,6 @@
 export default class WidgetService {
-    static widgetServiceUrl = 'https://localhost:8080/api/widgets';
-    static widgetServiceIdUrl = 'https://localhost:8080/api/widgets/USER_ID';
+    static widgetServiceUrl = "http://localhost:8080/api/widgets";
+    static widgetServiceIdUrl = "http://localhost:8080/api/widgets/USER_ID";
     static myInstance = null;
 
     constructor() {}
@@ -13,11 +13,11 @@ export default class WidgetService {
     }
 
     createWidget = widget => {
-        return fetch(this.widgetServiceUrl, {
-            method: 'POST',
+        fetch("http://localhost:8080/api/widgets", {
+            method: "POST",
             body: JSON.stringify(widget),
             headers: {
-                'content-type': 'application/json'
+                "content-type": "application/json"
             }
         }).then(function(response) {
             return response.json();
@@ -25,19 +25,14 @@ export default class WidgetService {
     }
 
     findAllWidgets = () => {
-        return fetch(this.widgetServiceUrl, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(function(response) {
+        fetch("http://localhost:8080/api/widgets").then(function(response) {
             return response.json();
         })
     }
 
     findWidgetById = wid => {
-        const findWidgetUrl = this.widgetServiceIdUrl.replace('USER_ID', wid);
-        return fetch(findWidgetUrl, {
+        const findWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        fetch(findWidgetUrl, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -48,8 +43,8 @@ export default class WidgetService {
     }
 
     updateWidget = (wid, widget) => {
-        const updateWidgetUrl = this.widgetServiceIdUrl.replace('USER_ID', wid);
-        return fetch(updateWidgetUrl, {
+        const updateWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        fetch(updateWidgetUrl, {
             method: 'PUT',
             body: JSON.stringify(widget),
             headers: {
@@ -61,11 +56,9 @@ export default class WidgetService {
     }
 
     deleteWidget = wid => {
-        const deleteWidgetUrl = this.widgetServiceIdUrl.replace('USER_ID', wid);
-        return fetch(deleteWidgetUrl, {
+        const deleteWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        fetch(deleteWidgetUrl, {
             method: 'DELETE'
-        }).then(function(response) {
-            return response.json();
         })
     }
 }

@@ -1,16 +1,14 @@
 import React from 'react'
+import HeadingWidget from './HeadingWidget';
+
 
 const WidgetListComponent = ({ widgets }) => {
     return(
         <ul className="nav nav-pills nav-fill">
-            {widgets.map((widget, key) => 
-                <li 
-                    className="nav-item"
-                    key={key}>
-                <a className="nav-link bg-light">
-                    {widget.type}
-                </a>
-             </li>
+            {widgets.map((widget) => 
+                <HeadingWidget
+                    key={widget.id}
+                    widget={widget}/>
             )}
         </ul>
     )

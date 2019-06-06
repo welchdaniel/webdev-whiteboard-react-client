@@ -7,6 +7,10 @@ import { Navbar, Nav, Button, Form, Dropdown } from 'react-bootstrap';
 import { faTimes, faPlus, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetListComponent from '../components/WidgetListComponent';
+import WidgetService from '../services/WidgetService';
+
+let widgetService = WidgetService.getInstance();
+const initialWidgets = widgetService.findAllWidgets();
 
 export default class CourseEditor extends React.Component {
     constructor(props) {
@@ -22,7 +26,7 @@ export default class CourseEditor extends React.Component {
             modules: this.course.modules,
             currentLessons: [],
             currentTopics: [],
-            currentWidgets: [],
+            widgets: [],
             moduleNewTitle: '',
             tabNewTitle: '',
             pillNewTitle: '',
@@ -578,7 +582,7 @@ export default class CourseEditor extends React.Component {
                         </div>
                         <div>
                             <WidgetListComponent
-                                widgets={this.state.currentWidgets}/>
+                                widgets={this.state.widgets}/>
                         </div>
                     </div>
                 </div>

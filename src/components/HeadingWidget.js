@@ -1,6 +1,10 @@
+import React from 'react'
+
 const HeadingWidget = ({ widget }) => {
     return(
-        <li> {widget.text} </li>
+        <li className="nav-item"> 
+            {widget.type} 
+        </li>
     )
 }
 

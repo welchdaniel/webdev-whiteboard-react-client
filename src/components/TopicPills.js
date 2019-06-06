@@ -1,7 +1,4 @@
-import React from 'react'
-import { Dropdown } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
 
 const TopicPills = ({topics, selectedTopic, selectTopic}) => {
     return(

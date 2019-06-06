@@ -1,6 +1,6 @@
-const HeadingWidget = () => {
+const HeadingWidget = ({ widget }) => {
     return(
-        <li> Heading Widget </li>
+        <li> {widget.text} </li>
     )
 }
 

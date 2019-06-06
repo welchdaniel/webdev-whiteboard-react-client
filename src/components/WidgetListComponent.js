@@ -1,17 +1,17 @@
-const WidgetListComponent = ({widget}) => {
+import React from 'react'
+
+const WidgetListComponent = ({ widgets }) => {
     return(
         <ul className="nav nav-pills nav-fill">
-            {widgets.map((widget, key) => {
-                switch(widget.type) {
-                }
+            {widgets.map((widget, key) => 
                 <li 
                     className="nav-item"
                     key={key}>
                 <a className="nav-link bg-light">
-                    {widget.title}
+                    {widget.type}
                 </a>
              </li>
-            })}
+            )}
         </ul>
     )
 }

@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { Navbar, Nav, Button, Form, Dropdown } from 'react-bootstrap';
 import { faTimes, faPlus, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WidgetListComponent from '../components/WidgetListComponent';
 
 export default class CourseEditor extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export default class CourseEditor extends React.Component {
             modules: this.course.modules,
             currentLessons: [],
             currentTopics: [],
+            currentWidgets: [],
             moduleNewTitle: '',
             tabNewTitle: '',
             pillNewTitle: '',
@@ -156,6 +158,7 @@ export default class CourseEditor extends React.Component {
 
     selectTopic = topic => {
         this.setState({
+            currentWidgets: topic.widgets,
             selectedTopic: topic,
             editingPill: false
         })
@@ -572,6 +575,10 @@ export default class CourseEditor extends React.Component {
                                     selectedTopic={this.state.selectedTopic}
                                     selectTopic={this.selectTopic}/>
                             </div>
+                        </div>
+                        <div>
+                            <WidgetListComponent
+                                widgets={this.state.currentWidgets}/>
                         </div>
                     </div>
                 </div>

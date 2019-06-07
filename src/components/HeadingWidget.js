@@ -54,7 +54,7 @@ const HeadingWidget = ({ widget, deleteWidget, editing }) => {
                         <label for="widgetName">Widget name</label>
                         <input type="text" class="form-control" id="widgetName" aria-describedby="widgetName" placeholder="Widget name"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
                 <div className="row mt-4">
                     <h4 className="mb-4">Preview</h4>

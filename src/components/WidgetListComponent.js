@@ -11,15 +11,18 @@ let Widget;
 class WidgetListComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.props.findAllWidgets(); 
-
+        this.props.findAllWidgets();
+        this.props.toggleEditing();
     }
     render() {
         return(
             <div>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1"/>
-                    <label class="custom-control-label" for="customSwitch1">Preview</label>
+                <div className="custom-control custom-switch">
+                    <input type="checkbox" 
+                        className="custom-control-input" 
+                        id="customSwitch1" 
+                        onClick={() => {this.props.toggleEditing(this.props.editing)}}/>
+                    <label className="custom-control-label" htmlFor="customSwitch1">Preview</label>
                 </div>
                 <ul className="nav nav-pills nav-fill">
                     {this.props.widgets.map((widget) => {
@@ -46,6 +49,7 @@ class WidgetListComponent extends React.Component {
                         return(<Widget
                             key={widget.id}
                             widget={widget}
+                            editing={this.props.editing}
                             deleteWidget={this.props.deleteWidget}/>)
                     })}
                 </ul>

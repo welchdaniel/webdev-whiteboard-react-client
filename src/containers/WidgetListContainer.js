@@ -5,10 +5,20 @@ import WidgetService from '../services/WidgetService'
 const widgetService = WidgetService.getInstance();
 
 const stateToPropertyMapper = state => ({
-    widgets: state.widgets
+    widgets: state.widgets,
+    editing: state.editing
 })
 
 const propertyToDispatchMapper = dispatch => ({
+    toggleEditing: editing => 
+    widgetService
+    .findAllWidgets()
+    .then(widgets => 
+        dispatch({
+            type: 'TOGGLE_EDITING',
+            widgets: widgets,
+            editing: editing
+    })),    
     deleteWidget: widgetId => 
         widgetService
             .deleteWidget(widgetId)

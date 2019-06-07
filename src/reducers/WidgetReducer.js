@@ -2,8 +2,10 @@ import WidgetService from '../services/WidgetService'
 const widgetService = WidgetService.getInstance();
 let widgets = widgetService.findAllWidgets();
 
-const WidgetReducer = (state = {widgets: []}, action) => {
+const WidgetReducer = (state = {widgets: [], editing: false}, action) => {
  switch (action.type) {
+    case 'TOGGLE_EDITING':
+        return {widgets: action.widgets, editing: !action.editing};
     case 'CREATE_WIDGET':
         return {widgets: action.widgets};
     case 'DELETE_WIDGET':

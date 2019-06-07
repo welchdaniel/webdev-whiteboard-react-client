@@ -56,9 +56,6 @@ const HeadingWidget = ({ widget, deleteWidget, editing }) => {
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <div className="row form">
-
-                </div>
                 <div className="row mt-4">
                     <h4>Preview</h4>
                 </div>

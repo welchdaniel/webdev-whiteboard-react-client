@@ -34,6 +34,8 @@ const propertyToDispatchMapper = dispatch => ({
             .createWidget({
                 id: (new Date()).getTime(),
                 name: 'New Widget',
+                text: 'New Heading',
+                size: 3,
                 type: 'HEADING'
             })
             .then(widgets => 

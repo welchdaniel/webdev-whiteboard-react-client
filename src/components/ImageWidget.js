@@ -7,7 +7,7 @@ const ImageWidget = ({ widget, deleteWidget, editing }) => {
     return(
         <li className="list-group-item">
         <div className={editing ? "container" : "d-none"}>
-            <div className="row">
+            <div className="row mb-4">
                 <h3 className="col-8">Image widget</h3>
                 <div className="col-4 d-flex justify-content-end">
                     <Button 
@@ -30,6 +30,17 @@ const ImageWidget = ({ widget, deleteWidget, editing }) => {
                     </Button>
                 </div>
             </div>
+            <form>
+                <div class="form-group">
+                    <label for="imageUrl">Image url</label>
+                    <input type="url" class="form-control" id="imageUrl" rows="4" aria-describedby="imageUrl" placeholder="Image url"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetName">Widget name</label>
+                    <input type="text" class="form-control" id="widgetName" aria-describedby="widgetName" placeholder="Widget name"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             <div className="row mt-4">
                 <h4>Preview</h4>
             </div>

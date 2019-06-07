@@ -6,6 +6,10 @@ import ImageWidget from './ImageWidget';
 import HyperlinkWidget from './HyperlinkWidget';
 import {connect} from 'react-redux'
 
+import { Button } from 'react-bootstrap';
+import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 let Widget;
 
 class WidgetListComponent extends React.Component {
@@ -17,14 +21,16 @@ class WidgetListComponent extends React.Component {
     render() {
         return(
             <div>
-                <div className="custom-control custom-switch">
-                    <input type="checkbox" 
+                <div className="custom-control custom-switch mb-2 col-12" align="right">
+                    <input 
+                        checked={!this.props.editing}
+                        type="checkbox" 
                         className="custom-control-input" 
                         id="customSwitch1" 
-                        onClick={() => {this.props.toggleEditing(this.props.editing)}}/>
+                        onChange={() => {this.props.toggleEditing(this.props.editing)}}/>
                     <label className="custom-control-label" htmlFor="customSwitch1">Preview</label>
                 </div>
-                <ul className="nav nav-pills nav-fill">
+                <ul className="list-group col-12">
                     {this.props.widgets.map((widget) => {
                         switch (widget.type) {
                             case 'HEADING':
@@ -53,7 +59,12 @@ class WidgetListComponent extends React.Component {
                             deleteWidget={this.props.deleteWidget}/>)
                     })}
                 </ul>
-                <button onClick={this.props.createWidget}>Create</button>
+                <Button 
+                    onClick={this.props.createWidget}
+                    variant="danger"
+                    className="col-1 float-right mr-3 mt-3">
+                    <FontAwesomeIcon icon={faPlus} />
+                </Button>
             </div>
         )
     }

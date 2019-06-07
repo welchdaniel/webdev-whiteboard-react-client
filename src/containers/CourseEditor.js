@@ -92,18 +92,6 @@ export default class CourseEditor extends React.Component {
         this.widgetService.findAllWidgets().then(response => this.setState({widgets: response}));
     }
 
-    logWidgets = () => {
-        //widgetService.findAllWidgets();
-        //widgetService.createWidget(this.state.testWidget);
-        //widgetService.findAllWidgets();
-        //widgetService.findWidgetById(45);
-        //widgetService.findAllWidgets();
-        //widgetService.updateWidget(45, this.state.testWidget2);
-        //widgetService.findAllWidgets();
-        //widgetService.deleteWidget(123);
-        //widgetService.findAllWidgets();
-    }
-
     //done
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
@@ -608,12 +596,6 @@ export default class CourseEditor extends React.Component {
                                         selectTopic={this.selectTopic}/>
                                 </div>
                             </div>
-                            <Button 
-                                onClick={this.logWidgets}
-                                variant="danger"
-                                className="col-3 col-md-3 col-lg-2">
-                                <FontAwesomeIcon icon={faPlus} />
-                            </Button>
                             <WidgetListContainer/>
                         </div>
                     </div>

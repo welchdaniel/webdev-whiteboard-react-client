@@ -7,15 +7,15 @@ const WidgetReducer = (state = {widgets: [], editing: false}, action) => {
     case 'TOGGLE_EDITING':
         return {widgets: action.widgets, editing: !action.editing};
     case 'CREATE_WIDGET':
-        return {widgets: action.widgets};
+        return {widgets: action.widgets, editing: action.editing};
     case 'DELETE_WIDGET':
-        return {widgets: action.widgets};
+        return {widgets: action.widgets, editing: action.editing};
     case 'UPDATE_WIDGET':
-        return {widgets: action.widgets};
+        return {widgets: action.widgets, editing: action.editing};
     case 'FIND_WIDGET':
-        return {widgets: action.widgets};
+        return {widgets: action.widgets, editing: action.editing};
     case 'FIND_ALL_WIDGETS':
-        return {widgets: action.widgets};
+        return {widgets: action.widgets, editing: action.editing};
     default: 
         return state
 }}

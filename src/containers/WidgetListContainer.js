@@ -25,7 +25,8 @@ const propertyToDispatchMapper = dispatch => ({
             .then(widgets => 
                 dispatch({
                     type: 'DELETE_WIDGET',
-                    widgets: widgets
+                    widgets: widgets,
+                    editing: true
                 })
             ),
     createWidget: () =>
@@ -38,7 +39,8 @@ const propertyToDispatchMapper = dispatch => ({
             .then(widgets => 
                 dispatch({
                     type: 'CREATE_WIDGET',
-                    widgets: widgets
+                    widgets: widgets,
+                    editing: true
                 })
             ),
     findAllWidgets: () => 

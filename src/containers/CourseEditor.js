@@ -6,10 +6,13 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { Navbar, Nav, Button, Form, Dropdown } from 'react-bootstrap';
 import { faTimes, faPlus, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import WidgetListComponent from '../components/WidgetListComponent';
+import WidgetListContainer from '../containers/WidgetListContainer';
 import WidgetService from '../services/WidgetService';
+import WidgetReducer from '../reducers/WidgetReducer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
-let widgetService = WidgetService.getInstance();
+const store = createStore(WidgetReducer)
 
 export default class CourseEditor extends React.Component {
     constructor(props) {
@@ -19,13 +22,14 @@ export default class CourseEditor extends React.Component {
         const courseId = paths[3];
         this.courses = props.courses;
         this.course = this.courses.find(course => course.id == courseId);
+        this.widgetService = WidgetService.getInstance();
         this.state = {
+            widgets: [],
             courseId: courseId,
             course: this.course,
             modules: this.course.modules,
             currentLessons: [],
             currentTopics: [],
-            widgets: [],
             moduleNewTitle: '',
             tabNewTitle: '',
             pillNewTitle: '',
@@ -84,6 +88,8 @@ export default class CourseEditor extends React.Component {
                 widgets: []
             },
         }
+
+        this.widgetService.findAllWidgets().then(response => this.setState({widgets: response}));
     }
 
     logWidgets = () => {
@@ -410,210 +416,209 @@ export default class CourseEditor extends React.Component {
 
     render() {
         return(
-            <div className="container-fluid">
-                <Navbar bg="dark" 
-                        variant="dark" 
-                        expand="lg" 
-                        fixed="top"
-                        onToggle={this.setEditorNavExpanded}
-                        expanded={this.state.editorNavExpanded}>
-                    <Link to="/course/grid" className={this.state.editorNavExpanded ? "d-none" : ""}>
+            <Provider store={store}>
+                <div className="container-fluid">
+                    <Navbar bg="dark" 
+                            variant="dark" 
+                            expand="lg" 
+                            fixed="top"
+                            onToggle={this.setEditorNavExpanded}
+                            expanded={this.state.editorNavExpanded}>
+                        <Link to="/course/grid" className={this.state.editorNavExpanded ? "d-none" : ""}>
+                            <FontAwesomeIcon 
+                                onClick={this.updateCourse}
+                                icon={faTimes}
+                                className="fa-lg text-danger mr-5 mr-lg-4"/>
+                        </Link>
                         <FontAwesomeIcon 
-                            onClick={this.updateCourse}
+                            onClick={this.closeEditorNav}
                             icon={faTimes}
-                            className="fa-lg text-danger mr-5 mr-lg-4"/>
-                    </Link>
-                    <FontAwesomeIcon 
-                        onClick={this.closeEditorNav}
-                        icon={faTimes}
-                        className={this.state.editorNavExpanded ? 
-                            "fa-lg text-light mr-5 mr-lg-4" : "d-none"}>
-                    </FontAwesomeIcon>
-                    <Navbar.Brand href="#">{this.state.course.title}</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
-                    <Navbar.Collapse id="webdev-navbar-nav">
-                        <Nav className="mr-auto" onSelect={this.closeEditorNav}/>
-                        <LessonTabs inline
-                            deleteTab={this.deleteTab}
-                            editTab={this.editTab}
-                            editingTab={this.state.editingTab}
-                            selectLesson={this.selectLesson}
-                            selectedLesson={this.state.selectedLesson}
-                            lessons={this.state.currentLessons}/>
-                        <div className="row ml-lg-3 mt-2 mb-4 mb-md-0">
-                            <Dropdown 
-                                alignRight 
-                                className={this.state.currentLessons.length > 0 ? 
-                                    "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" 
-                                    : "col-12 col-md-3 invisible"}>
-                                <Dropdown.Toggle
-                                    className="block-under-md"
-                                    variant="warning">
-                                    <FontAwesomeIcon 
-                                        icon={faPencilAlt}
-                                        className="mr-1"/>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={this.editTab}>
-                                            <span 
-                                                className="label">
+                            className={this.state.editorNavExpanded ? 
+                                "fa-lg text-light mr-5 mr-lg-4" : "d-none"}>
+                        </FontAwesomeIcon>
+                        <Navbar.Brand href="#">{this.state.course.title}</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="webdev-navbar-nav"/>
+                        <Navbar.Collapse id="webdev-navbar-nav">
+                            <Nav className="mr-auto" onSelect={this.closeEditorNav}/>
+                            <LessonTabs inline
+                                deleteTab={this.deleteTab}
+                                editTab={this.editTab}
+                                editingTab={this.state.editingTab}
+                                selectLesson={this.selectLesson}
+                                selectedLesson={this.state.selectedLesson}
+                                lessons={this.state.currentLessons}/>
+                            <div className="row ml-lg-3 mt-2 mb-4 mb-md-0">
+                                <Dropdown 
+                                    alignRight 
+                                    className={this.state.currentLessons.length > 0 ? 
+                                        "float-right col-12 col-md-3 mt-4 mt-sm-3 mt-lg-0 mb-4 mb-sm-3 mb-lg-0" 
+                                        : "col-12 col-md-3 invisible"}>
+                                    <Dropdown.Toggle
+                                        className="block-under-md"
+                                        variant="warning">
+                                        <FontAwesomeIcon 
+                                            icon={faPencilAlt}
+                                            className="mr-1"/>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item onClick={this.editTab}>
+                                                <span 
+                                                    className="label">
+                                                    <FontAwesomeIcon 
+                                                        icon={faEdit}
+                                                        className="mr-1"/>
+                                                </span>
+                                                Edit Selected Lesson
+                                        </Dropdown.Item>
+                                        <Dropdown.Item 
+                                            onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
+                                            <span className="label">
                                                 <FontAwesomeIcon 
-                                                    icon={faEdit}
-                                                    className="mr-1"/>
+                                                    icon={faTrashAlt}
+                                                    className="mr-2"/>
                                             </span>
-                                            Edit Selected Lesson
-                                    </Dropdown.Item>
-                                    <Dropdown.Item 
-                                        onClick={() => this.deleteTab(this.state.selectedLesson.id)}>
-                                        <span className="label">
-                                            <FontAwesomeIcon 
-                                                icon={faTrashAlt}
-                                                className="mr-2"/>
-                                        </span>
-                                        Delete Selected Lesson
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Form inline className={(this.state.selectedModule.id > 0) && !this.state.editingTab ? 
-                                    "col-12 col-md-9" : "row d-none"}>
-                                <Form.Control 
-                                    type="text"
-                                    onChange={this.tabTitleChanged}
-                                    value={this.state.addedLesson.title}
-                                    placeholder="New Lesson" 
-                                    className="mr-xs-2 col-9 col-md-9 col-lg-9"
-                                    id="new-lesson" />
-                                <Button 
-                                    onClick={this.createLesson}
-                                    variant="danger"
-                                    className="col-3 col-md-3 col-lg-2">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
-                            <Form inline className={(this.state.selectedModule.id > 0) && this.state.editingTab ? 
-                                    "col-12 col-md-9" : "row d-none"}>
-                                <Form.Control 
-                                    type="text"
-                                    onChange={this.editTab}
-                                    value={this.state.tabNewTitle}
-                                    placeholder="Rename Lesson" 
-                                    className="mr-xs-2 col-9 col-md-9 col-lg-9"
-                                    id="new-lesson" />
-                                <Button 
-                                    onClick={this.renameTab}
-                                    variant="success"
-                                    className="col-3 col-md-3 col-lg-2">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
-                        </div>
-                    </Navbar.Collapse>
-                </Navbar>
-
-
-                <div className="row mt-2" onClick={this.closeEditorNav}>
-                    <div className="col-6 col-md-3">
-                        <ModuleList
-                            editModule={this.editModule}
-                            editingModule={this.state.editingModule}
-                            stopEditing={this.stopEditing}
-                            renameModule={this.renameModule}
-                            editingTitle={this.state.moduleNewTitle}
-                            moduleTitle={this.state.addedModule.title}
-                            titleChanged={this.titleChanged}
-                            createModule={this.createModule}
-                            selectedModule={this.state.selectedModule}
-                            selectModule={this.selectModule}
-                            deleteModule={this.deleteModule}
-                            modules={this.state.modules}/>
-                    </div>
-                    <div className="col-6 col-md-9 mt-2">
-                        <div className="row justify-content-center justify-content-md-end">
-                            <Form inline className={(this.state.selectedLesson.id > 0) && !this.state.editingPill ? 
-                                        "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
-                                <Form.Control 
-                                    type="text"
-                                    onChange={this.pillTitleChanged}
-                                    value={this.state.addedTopic.title}
-                                    placeholder="New Topic" 
-                                    className="col-12 col-lg-10 col-sm-9"
-                                    id="new-topic" />
-                                <Button 
-                                    onClick={this.createTopic}
-                                    variant="secondary"
-                                    className="col-12 col-lg-2 col-sm-3">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
-                            <Form inline className={(this.state.selectedLesson.id > 0) && this.state.editingPill ? 
-                                        "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
-                                <Form.Control 
-                                    type="text"
-                                    onChange={this.editPill}
-                                    value={this.state.pillNewTitle}
-                                    placeholder="Rename Topic" 
-                                    className="col-12 col-lg-10 col-sm-9"
-                                    id="new-topic" />
-                                <Button 
-                                    onClick={this.renamePill}
-                                    variant="success"
-                                    className="col-12 col-lg-2 col-sm-3">
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                            </Form>
-                            <Dropdown 
-                                alignRight 
-                                className={this.state.selectedTopic.id > 0 ? 
-                                    "float-right col-12 col-md-2 col-lg-1 mt-3 mt-md-0 mb-4 mb-sm-3 mb-lg-0" 
-                                    : "col-12 col-md-2 col-lg-1 invisible"}>
-                                <Dropdown.Toggle
-                                    className="block-under-md"
-                                    variant="warning">
-                                    <FontAwesomeIcon 
-                                        icon={faPencilAlt}
-                                        className="mr-1"/>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={this.editPill}>
-                                            <span 
-                                                className="label">
-                                                <FontAwesomeIcon 
-                                                    icon={faEdit}
-                                                    className="mr-1"/>
-                                            </span>
-                                            Edit Selected Topic
-                                    </Dropdown.Item>
-                                    <Dropdown.Item 
-                                        onClick={() => this.deletePill(this.state.selectedTopic.id)}>
-                                        <span className="label">
-                                            <FontAwesomeIcon 
-                                                icon={faTrashAlt}
-                                                className="mr-2"/>
-                                        </span>
-                                        Delete Selected Topic
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <div className="col-12">
-                                <TopicPills
-                                    topics={this.state.selectedLesson.topics}
-                                    selectedTopic={this.state.selectedTopic}
-                                    selectTopic={this.selectTopic}/>
+                                            Delete Selected Lesson
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <Form inline className={(this.state.selectedModule.id > 0) && !this.state.editingTab ? 
+                                        "col-12 col-md-9" : "row d-none"}>
+                                    <Form.Control 
+                                        type="text"
+                                        onChange={this.tabTitleChanged}
+                                        value={this.state.addedLesson.title}
+                                        placeholder="New Lesson" 
+                                        className="mr-xs-2 col-9 col-md-9 col-lg-9"
+                                        id="new-lesson" />
+                                    <Button 
+                                        onClick={this.createLesson}
+                                        variant="danger"
+                                        className="col-3 col-md-3 col-lg-2">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
+                                <Form inline className={(this.state.selectedModule.id > 0) && this.state.editingTab ? 
+                                        "col-12 col-md-9" : "row d-none"}>
+                                    <Form.Control 
+                                        type="text"
+                                        onChange={this.editTab}
+                                        value={this.state.tabNewTitle}
+                                        placeholder="Rename Lesson" 
+                                        className="mr-xs-2 col-9 col-md-9 col-lg-9"
+                                        id="new-lesson" />
+                                    <Button 
+                                        onClick={this.renameTab}
+                                        variant="success"
+                                        className="col-3 col-md-3 col-lg-2">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
                             </div>
+                        </Navbar.Collapse>
+                    </Navbar>
+
+
+                    <div className="row mt-2" onClick={this.closeEditorNav}>
+                        <div className="col-6 col-md-3">
+                            <ModuleList
+                                editModule={this.editModule}
+                                editingModule={this.state.editingModule}
+                                stopEditing={this.stopEditing}
+                                renameModule={this.renameModule}
+                                editingTitle={this.state.moduleNewTitle}
+                                moduleTitle={this.state.addedModule.title}
+                                titleChanged={this.titleChanged}
+                                createModule={this.createModule}
+                                selectedModule={this.state.selectedModule}
+                                selectModule={this.selectModule}
+                                deleteModule={this.deleteModule}
+                                modules={this.state.modules}/>
                         </div>
-                        <Button 
-                            onClick={this.logWidgets}
-                            variant="danger"
-                            className="col-3 col-md-3 col-lg-2">
-                            <FontAwesomeIcon icon={faPlus} />
-                        </Button>
-                        <div>
-                            <WidgetListComponent
-                                widgets={this.state.widgets}/>
+                        <div className="col-6 col-md-9 mt-2">
+                            <div className="row justify-content-center justify-content-md-end">
+                                <Form inline className={(this.state.selectedLesson.id > 0) && !this.state.editingPill ? 
+                                            "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
+                                    <Form.Control 
+                                        type="text"
+                                        onChange={this.pillTitleChanged}
+                                        value={this.state.addedTopic.title}
+                                        placeholder="New Topic" 
+                                        className="col-12 col-lg-10 col-sm-9"
+                                        id="new-topic" />
+                                    <Button 
+                                        onClick={this.createTopic}
+                                        variant="secondary"
+                                        className="col-12 col-lg-2 col-sm-3">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
+                                <Form inline className={(this.state.selectedLesson.id > 0) && this.state.editingPill ? 
+                                            "row col-12 col-md-8 col-lg-4 mb-0 mb-md-3" : "d-none"}>
+                                    <Form.Control 
+                                        type="text"
+                                        onChange={this.editPill}
+                                        value={this.state.pillNewTitle}
+                                        placeholder="Rename Topic" 
+                                        className="col-12 col-lg-10 col-sm-9"
+                                        id="new-topic" />
+                                    <Button 
+                                        onClick={this.renamePill}
+                                        variant="success"
+                                        className="col-12 col-lg-2 col-sm-3">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                </Form>
+                                <Dropdown 
+                                    alignRight 
+                                    className={this.state.selectedTopic.id > 0 ? 
+                                        "float-right col-12 col-md-2 col-lg-1 mt-3 mt-md-0 mb-4 mb-sm-3 mb-lg-0" 
+                                        : "col-12 col-md-2 col-lg-1 invisible"}>
+                                    <Dropdown.Toggle
+                                        className="block-under-md"
+                                        variant="warning">
+                                        <FontAwesomeIcon 
+                                            icon={faPencilAlt}
+                                            className="mr-1"/>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item onClick={this.editPill}>
+                                                <span 
+                                                    className="label">
+                                                    <FontAwesomeIcon 
+                                                        icon={faEdit}
+                                                        className="mr-1"/>
+                                                </span>
+                                                Edit Selected Topic
+                                        </Dropdown.Item>
+                                        <Dropdown.Item 
+                                            onClick={() => this.deletePill(this.state.selectedTopic.id)}>
+                                            <span className="label">
+                                                <FontAwesomeIcon 
+                                                    icon={faTrashAlt}
+                                                    className="mr-2"/>
+                                            </span>
+                                            Delete Selected Topic
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <div className="col-12">
+                                    <TopicPills
+                                        topics={this.state.selectedLesson.topics}
+                                        selectedTopic={this.state.selectedTopic}
+                                        selectTopic={this.selectTopic}/>
+                                </div>
+                            </div>
+                            <Button 
+                                onClick={this.logWidgets}
+                                variant="danger"
+                                className="col-3 col-md-3 col-lg-2">
+                                <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                            <WidgetListContainer/>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Provider>
         )
     }
 }

@@ -1,6 +1,4 @@
 export default class WidgetService {
-    static widgetServiceUrl = "http://localhost:8080/api/widgets";
-    static widgetServiceIdUrl = "http://localhost:8080/api/widgets/USER_ID";
     static myInstance = null;
 
     constructor() {}
@@ -13,11 +11,11 @@ export default class WidgetService {
     }
 
     createWidget = widget => {
-        fetch("http://localhost:8080/api/widgets", {
-            method: "POST",
+        return fetch("http://localhost:8080/api/widgets", {
+            method: 'POST',
             body: JSON.stringify(widget),
             headers: {
-                "content-type": "application/json"
+                'content-type': 'application/json'
             }
         }).then(function(response) {
             return response.json();
@@ -25,14 +23,13 @@ export default class WidgetService {
     }
 
     findAllWidgets = () => {
-        fetch("http://localhost:8080/api/widgets").then(function(response) {
-            return response.json();
-        })
+        return fetch("http://localhost:8080/api/widgets")
+            .then(function(response) {return response.json();})
     }
 
     findWidgetById = wid => {
         const findWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
-        fetch(findWidgetUrl, {
+        return fetch(findWidgetUrl, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +41,7 @@ export default class WidgetService {
 
     updateWidget = (wid, widget) => {
         const updateWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
-        fetch(updateWidgetUrl, {
+        return fetch(updateWidgetUrl, {
             method: 'PUT',
             body: JSON.stringify(widget),
             headers: {
@@ -57,7 +54,7 @@ export default class WidgetService {
 
     deleteWidget = wid => {
         const deleteWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
-        fetch(deleteWidgetUrl, {
+        return fetch(deleteWidgetUrl, {
             method: 'DELETE'
         })
     }

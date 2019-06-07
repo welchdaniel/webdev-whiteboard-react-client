@@ -11,7 +11,7 @@ export default class WidgetService {
     }
 
     createWidget = widget => {
-        return fetch("http://localhost:8080/api/widgets", {
+        return fetch("https://webdev-su19-dwelch-server-java.herokuapp.com/api/widgets", {
             method: 'POST',
             body: JSON.stringify(widget),
             headers: {
@@ -21,12 +21,12 @@ export default class WidgetService {
     }
 
     findAllWidgets = () => {
-        return fetch("http://localhost:8080/api/widgets")
+        return fetch("https://webdev-su19-dwelch-server-java.herokuapp.com/api/widgets")
             .then(function(response) {return response.json();})
     }
 
     findWidgetById = wid => {
-        const findWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        const findWidgetUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/widgets/USER_ID".replace('USER_ID', wid);
         return fetch(findWidgetUrl, {
             method: 'GET',
             headers: {
@@ -38,7 +38,7 @@ export default class WidgetService {
     }
 
     updateWidget = (wid, widget) => {
-        const updateWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        const updateWidgetUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/widgets/USER_ID".replace('USER_ID', wid);
         return fetch(updateWidgetUrl, {
             method: 'PUT',
             body: JSON.stringify(widget),
@@ -51,7 +51,7 @@ export default class WidgetService {
     }
 
     deleteWidget = wid => {
-        const deleteWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
+        const deleteWidgetUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/widgets/USER_ID".replace('USER_ID', wid);
         return fetch(deleteWidgetUrl, {
             method: 'DELETE'
         }).then(function(response) {

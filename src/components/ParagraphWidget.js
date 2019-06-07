@@ -22,6 +22,13 @@ const ParagraphWidget = ({ widget, deleteWidget, editing }) => {
                             className="mr-2">
                             <FontAwesomeIcon icon={faArrowDown} />
                         </Button>
+                        <select className="mr-2">
+                            <option value="HEADING">Heading</option>
+                            <option selected value="PARAGRAPH">Paragraph</option>
+                            <option value="LIST">List</option>
+                            <option value="IMAGE">Image</option>
+                            <option value="HYPERLINK">Hyperlink</option>
+                        </select>
                         <Button 
                             onClick={() => deleteWidget(widget.id)}
                             variant="danger"

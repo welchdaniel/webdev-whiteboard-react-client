@@ -23,7 +23,7 @@ const HeadingWidget = ({ widget, deleteWidget, editing }) => {
                             <FontAwesomeIcon icon={faArrowDown} />
                         </Button>
                         <select className="mr-2">
-                            <option value="HEADING">Heading</option>
+                            <option selected value="HEADING">Heading</option>
                             <option value="PARAGRAPH">Paragraph</option>
                             <option value="LIST">List</option>
                             <option value="IMAGE">Image</option>

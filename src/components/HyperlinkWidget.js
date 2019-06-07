@@ -7,8 +7,8 @@ const HyperlinkWidget = ({ widget, deleteWidget, editing }) => {
     return(
         <li className="list-group-item">
         <div className={editing ? "container" : "d-none"}>
-            <div className="row">
-                <h3 className="col-8">Hyperlink widget</h3>
+            <div className="row mb-4">
+                <h3 className="col-8">Link widget</h3>
                 <div className="col-4 d-flex justify-content-end">
                     <Button 
                         onClick={() => {}}
@@ -22,6 +22,13 @@ const HyperlinkWidget = ({ widget, deleteWidget, editing }) => {
                         className="mr-2">
                         <FontAwesomeIcon icon={faArrowDown} />
                     </Button>
+                    <select className="mr-2">
+                        <option value="HEADING">Heading</option>
+                        <option value="PARAGRAPH">Paragraph</option>
+                        <option value="LIST">List</option>
+                        <option value="IMAGE">Image</option>
+                        <option selected value="HYPERLINK">Hyperlink</option>
+                    </select>
                     <Button 
                         onClick={() => deleteWidget(widget.id)}
                         variant="danger"
@@ -30,6 +37,21 @@ const HyperlinkWidget = ({ widget, deleteWidget, editing }) => {
                     </Button>
                 </div>
             </div>
+            <form>
+                <div class="form-group">
+                    <label for="linkText">Link text</label>
+                    <input type="text" class="form-control" id="linkText" aria-describedby="linkText" placeholder="Link text"/>
+                </div>
+                <div class="form-group">
+                    <label for="linkUrl">Link url</label>
+                    <input type="url" class="form-control" id="linkUrl" aria-describedby="imageUrl" placeholder="Link url"/>
+                </div>
+                <div class="form-group">
+                    <label for="widgetName">Widget name</label>
+                    <input type="text" class="form-control" id="widgetName" aria-describedby="widgetName" placeholder="Widget name"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             <div className="row mt-4">
                 <h4>Preview</h4>
             </div>

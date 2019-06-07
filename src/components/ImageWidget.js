@@ -22,6 +22,13 @@ const ImageWidget = ({ widget, deleteWidget, editing }) => {
                         className="mr-2">
                         <FontAwesomeIcon icon={faArrowDown} />
                     </Button>
+                    <select className="mr-2">
+                        <option value="HEADING">Heading</option>
+                        <option value="PARAGRAPH">Paragraph</option>
+                        <option value="LIST">List</option>
+                        <option selected value="IMAGE">Image</option>
+                        <option value="HYPERLINK">Hyperlink</option>
+                    </select>
                     <Button 
                         onClick={() => deleteWidget(widget.id)}
                         variant="danger"
@@ -33,7 +40,7 @@ const ImageWidget = ({ widget, deleteWidget, editing }) => {
             <form>
                 <div class="form-group">
                     <label for="imageUrl">Image url</label>
-                    <input type="url" class="form-control" id="imageUrl" rows="4" aria-describedby="imageUrl" placeholder="Image url"/>
+                    <input type="url" class="form-control" id="imageUrl" aria-describedby="imageUrl" placeholder="Image url"/>
                 </div>
                 <div class="form-group">
                     <label for="widgetName">Widget name</label>

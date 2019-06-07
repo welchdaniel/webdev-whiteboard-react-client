@@ -1,6 +1,11 @@
-const ParagraphWidget = () => {
+import React from 'react'
+
+const ParagraphWidget = ({ widget, deleteWidget }) => {
     return(
-        <li> Paragraph Widget </li>
+        <li className="nav-item"> 
+            {widget.type} 
+            <button onClick={() => deleteWidget(widget.id)}>Delete</button>
+        </li> 
     )
 }
 

@@ -1,6 +1,11 @@
-const ListWidget = () => {
+import React from 'react'
+
+const ListWidget = ({ widget, deleteWidget }) => {
     return(
-        <li> List Widget </li>
+        <li className="nav-item"> 
+            {widget.type} 
+            <button onClick={() => deleteWidget(widget.id)}>Delete</button>
+        </li> 
     )
 }
 

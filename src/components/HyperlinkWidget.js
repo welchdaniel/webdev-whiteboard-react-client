@@ -57,7 +57,7 @@ const HyperlinkWidget = ({ widget, deleteWidget, editing }) => {
             </div>
         </div>
         <div>
-            
+            <a href={widget.src}>{widget.text}</a>   
         </div>
     </li> 
     )

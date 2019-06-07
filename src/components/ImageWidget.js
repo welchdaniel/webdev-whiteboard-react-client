@@ -53,8 +53,6 @@ const ImageWidget = ({ widget, deleteWidget, editing }) => {
             </div>
         </div>
         <div>
-        </div>
-        <div>
             <img src={widget.src} alt={widget.name}/>
         </div>
     </li> 

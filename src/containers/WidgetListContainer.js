@@ -12,13 +12,13 @@ const stateToPropertyMapper = state => ({
 const propertyToDispatchMapper = dispatch => ({
     toggleEditing: editing => 
     widgetService
-    .findAllWidgets()
-    .then(widgets => 
-        dispatch({
-            type: 'TOGGLE_EDITING',
-            widgets: widgets,
-            editing: editing
-    })),    
+        .findAllWidgets()
+        .then(widgets => 
+            dispatch({
+                type: 'TOGGLE_EDITING',
+                widgets: widgets,
+                editing: editing
+        })),
     deleteWidget: widgetId => 
         widgetService
             .deleteWidget(widgetId)

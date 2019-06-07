@@ -20,6 +20,7 @@ class WidgetListComponent extends React.Component {
                             widget={widget}/>
                     )}
                 </ul>
+                <button onClick={this.props.createWidget}>Create</button>
             </div>
         )
     }

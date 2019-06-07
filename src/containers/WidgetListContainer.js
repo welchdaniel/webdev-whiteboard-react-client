@@ -9,6 +9,19 @@ const stateToPropertyMapper = state => ({
 })
 
 const propertyToDispatchMapper = dispatch => ({
+    createWidget: () =>
+        widgetService
+            .createWidget({
+                id: (new Date()).getTime(),
+                name: 'New Widget',
+                type: 'HEADING'
+            })
+            .then(widgets => 
+                dispatch({
+                    type: 'CREATE_WIDGET',
+                    widgets: widgets
+                })
+            ),
     findAllWidgets: () => 
         widgetService
             .findAllWidgets()
@@ -16,7 +29,7 @@ const propertyToDispatchMapper = dispatch => ({
                 dispatch({
                     type: 'FIND_ALL_WIDGETS',
                     widgets: widgets
-                }))
+                }))        
 })
 
 const WidgetListContainer = connect(stateToPropertyMapper, propertyToDispatchMapper)(WidgetListComponent)

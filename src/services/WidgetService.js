@@ -17,9 +17,7 @@ export default class WidgetService {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(response) {
-            return response.json();
-        })
+        }).then(response =>response.json()) 
     }
 
     findAllWidgets = () => {

@@ -32,8 +32,8 @@ const ParagraphWidget = ({ widget, deleteWidget, editing }) => {
                 </div>
                 <form>
                     <div class="form-group">
-                        <label for="headingText">Paragraph text</label>
-                        <textarea type="text" class="form-control" id="headingText" rows="4" aria-describedby="headingText" placeholder="Heading text"/>
+                        <label for="paragraphText">Paragraph text</label>
+                        <textarea type="text" class="form-control" id="paragraphText" rows="4" aria-describedby="paragraphText" placeholder="Paragraph text"/>
                     </div>
                     <div class="form-group">
                         <label for="widgetName">Widget name</label>

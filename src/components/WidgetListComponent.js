@@ -7,7 +7,7 @@ import HyperlinkWidget from './HyperlinkWidget';
 import {connect} from 'react-redux'
 
 import { Button } from 'react-bootstrap';
-import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 let Widget;
@@ -61,7 +61,7 @@ class WidgetListComponent extends React.Component {
                 </ul>
                 <Button 
                     onClick={this.props.createWidget}
-                    variant="danger"
+                    variant="success"
                     className="col-1 float-right mr-3 mt-3">
                     <FontAwesomeIcon icon={faPlus} />
                 </Button>

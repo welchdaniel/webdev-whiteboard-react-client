@@ -1,10 +1,18 @@
 import React from 'react'
+import { Button } from 'react-bootstrap';
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ParagraphWidget = ({ widget, deleteWidget }) => {
     return(
         <li className="list-group-item"> 
             {widget.type} 
-            <button onClick={() => deleteWidget(widget.id)}>Delete</button>
+            <Button 
+                onClick={() => deleteWidget(widget.id)}
+                variant="danger"
+                className="col-1 float-right">
+                <FontAwesomeIcon icon={faTrashAlt} />
+            </Button>
         </li> 
     )
 }

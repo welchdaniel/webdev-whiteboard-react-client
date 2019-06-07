@@ -57,11 +57,19 @@ const HeadingWidget = ({ widget, deleteWidget, editing }) => {
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 <div className="row mt-4">
-                    <h4>Preview</h4>
+                    <h4 className="mb-4">Preview</h4>
                 </div>
             </div>
             <div>
-
+                <div className={widget.size == 1 ? "" : "d-none"}>
+                    <h1>{widget.text}</h1>
+                </div>
+                <div className={widget.size == 2 ? "" : "d-none"}>
+                    <h2>{widget.text}</h2>
+                </div>
+                <div className={widget.size == 3 ? "" : "d-none"}>
+                    <h3>{widget.text}</h3>
+                </div>
             </div>
         </li> 
     )

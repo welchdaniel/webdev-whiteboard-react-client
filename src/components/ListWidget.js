@@ -58,14 +58,28 @@ const ListWidget = ({ widget, deleteWidget, editing }) => {
                     <label for="widgetName">Widget name</label>
                     <input type="text" class="form-control" id="widgetName" aria-describedby="widgetName" placeholder="Widget name"/>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
             <div className="row mt-4">
-                <h4>Preview</h4>
+                <h4 className="mb-4">Preview</h4>
             </div>
         </div>
         <div>
+            <div className={widget.style == 'ul' ? "" : "d-none"}>
+                <ul>
+                    {widget.text.split("\n").map(line => 
+                        <li>{line}</li>)}
+                </ul>
+            </div>
+            <div className={widget.style == 'ol' ? "" : "d-none"}>
+                <ol>
+
+                </ol>
+            </div>
             
+        </div>
+        <div>
+
         </div>
     </li> 
     )

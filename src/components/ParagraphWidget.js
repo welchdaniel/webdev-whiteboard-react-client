@@ -51,9 +51,9 @@ const ParagraphWidget = ({ widget, deleteWidget, editing }) => {
                 <div className="row mt-4">
                     <h4 className="mb-4">Preview</h4>
                 </div>
-                <div>
-                    <p>{widget.text}</p>
-                </div>
+            </div>
+            <div>
+                <p>{widget.text}</p>
             </div>
             <div>
         </div>

@@ -54,6 +54,8 @@ export default class WidgetService {
         const deleteWidgetUrl = "http://localhost:8080/api/widgets/USER_ID".replace('USER_ID', wid);
         return fetch(deleteWidgetUrl, {
             method: 'DELETE'
+        }).then(function(response) {
+            return response.json();
         })
     }
 }

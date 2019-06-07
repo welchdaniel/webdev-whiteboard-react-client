@@ -1,10 +1,11 @@
 import React from 'react'
 
-const HeadingWidget = ({ widget }) => {
+const HeadingWidget = ({ widget, deleteWidget }) => {
     return(
         <li className="nav-item"> 
             {widget.type} 
-        </li>
+            <button onClick={() => deleteWidget(widget.id)}>Delete</button>
+        </li> 
     )
 }
 

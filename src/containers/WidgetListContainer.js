@@ -9,6 +9,15 @@ const stateToPropertyMapper = state => ({
 })
 
 const propertyToDispatchMapper = dispatch => ({
+    deleteWidget: widgetId => 
+        widgetService
+            .deleteWidget(widgetId)
+            .then(widgets => 
+                dispatch({
+                    type: 'DELETE_WIDGET',
+                    widgets: widgets
+                })
+            ),
     createWidget: () =>
         widgetService
             .createWidget({

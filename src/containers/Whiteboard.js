@@ -32,25 +32,29 @@ export default class Whiteboard extends React.Component {
     selectCourse = course => this.setState({selectedCourse:course})
 
     createCourse = () => {
-        this.setState({
-            courses: courseService.createCourse(this.state.addedCourse),
-            addedCourse: {
-                title: ''
-            }
+        courseService.createCourse(this.state.addedCourse).then(response => {
+            this.setState({
+                courses: response,
+                addedCourse: {
+                    title: ''
+                }
+            })
+            this.closeNav();
         })
-        this.closeNav();
     }
 
     deleteCourse = (id) => {
-        this.setState({
-            courses: courseService.deleteCourse(id)
+        courseService.deleteCourse(id).then(response => {
+            this.setState({
+                courses: response
+            })
         })
     }
 
     titleChanged = (event) => {
         this.setState({
             addedCourse: {
-                id: new Date().getTime(),
+                id: new Date().getTime() % 1000,
                 title: event.target.value,
                 modifiedAt: this.getModificationTime(),
                 modules: []

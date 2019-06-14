@@ -1,12 +1,13 @@
-import React from 'react'
-import LessonTabs from '../components/LessonTabs'
-import TopicPills from '../components/TopicPills'
-import ModuleList from '../components/ModuleList'
+import React from 'react';
+import LessonTabs from '../components/LessonTabs';
+import TopicPills from '../components/TopicPills';
+import ModuleList from '../components/ModuleList';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import { Navbar, Nav, Button, Form, Dropdown } from 'react-bootstrap';
 import { faTimes, faPlus, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetListContainer from '../containers/WidgetListContainer';
+import ModuleService from '../services/ModuleService';
 import WidgetService from '../services/WidgetService';
 import WidgetReducer from '../reducers/WidgetReducer';
 import {Provider} from 'react-redux';
@@ -22,6 +23,7 @@ export default class CourseEditor extends React.Component {
         const courseId = paths[3];
         this.courses = props.courses;
         this.course = this.courses.find(course => course.id == courseId);
+        this.moduleService = ModuleService.getInstance();
         this.widgetService = WidgetService.getInstance();
         this.state = {
             widgets: [],
@@ -95,15 +97,17 @@ export default class CourseEditor extends React.Component {
     //done
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
-        this.state.modules.push(this.state.addedModule)
-        this.state.course.modules = this.state.modules;
-        this.selectModule(this.state.addedModule);
-        this.setState({
-            modules: this.state.modules,
-            addedModule: {
-                title: ''
-            }
-        })
+        //this.state.modules.push(this.state.addedModule)
+        //this.state.course.modules = this.state.modules;
+        //this.selectModule(this.state.addedModule);
+        this.moduleService.createModule(this.state.addedModule).then(response => {
+            this.setState({
+                modules: response,
+                addedModule: {
+                    title: ''
+                }
+            })
+        })   
     }
 
     //done
@@ -187,7 +191,7 @@ export default class CourseEditor extends React.Component {
     titleChanged = (event) => {
         this.setState({
             addedModule: {
-                id: new Date().getTime(),
+                id: new Date().getTime() % 1000,
                 title: event.target.value,
                 lessons: []
             }
@@ -198,7 +202,7 @@ export default class CourseEditor extends React.Component {
     tabTitleChanged = (event) => {
         this.setState({
             addedLesson: {
-                id: new Date().getTime(),
+                id: new Date().getTime() % 1000,
                 title: event.target.value,
                 topics: []
             }
@@ -209,7 +213,7 @@ export default class CourseEditor extends React.Component {
     pillTitleChanged = (event) => {
         this.setState({
             addedTopic: {
-                id: new Date().getTime(),
+                id: new Date().getTime() % 1000,
                 title: event.target.value,
                 widgets: []
             }
@@ -397,7 +401,6 @@ export default class CourseEditor extends React.Component {
             id: this.course.id,
             title: this.course.title,
             modifiedAt: this.course.modifiedAt,
-            modules: this.state.modules
         }
         this.props.updateCourse(updatedCourse.id, updatedCourse);
     }

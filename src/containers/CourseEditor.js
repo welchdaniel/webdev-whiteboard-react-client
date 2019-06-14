@@ -264,16 +264,19 @@ export default class CourseEditor extends React.Component {
     }
 
     renameModule = () => {
-        this.state.modules.map((module) => {
-            if (module.id == this.state.selectedModule.id) {
-                module.title = this.state.moduleNewTitle;
-            }
-        })
+        let newTitle = this.state.moduleNewTitle;
         this.setState({
+            selectedModule: {
+                id: this.state.selectedModule.id,
+                title: newTitle,
+                lessons: this.state.selectedModule.lessons
+            },
             modules: this.state.modules,
             editingModule: false,
             moduleNewTitle: ''
-        })
+        },
+        () => this.updateModule()
+        )
     }
 
     renameTab = () => {

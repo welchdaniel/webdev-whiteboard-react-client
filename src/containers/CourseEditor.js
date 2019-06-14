@@ -19,19 +19,18 @@ const store = createStore(WidgetReducer)
 export default class CourseEditor extends React.Component {
     constructor(props) {
         super(props)
-        const pathName = window.location.pathname;
-        const paths = pathName.split("/")
-        const courseId = paths[3];
-        this.courses = props.courses;
-        this.course = this.courses.find(course => course.id == courseId);
         this.courseService = CourseService.getInstance();
         this.moduleService = ModuleService.getInstance();
         this.widgetService = WidgetService.getInstance();
+        const pathName = window.location.pathname;
+        const paths = pathName.split("/")
+        const courseId = paths[3];
+        //this.course = this.courses.find(course => course.id == courseId);
         this.state = {
             widgets: [],
             courseId: courseId,
-            course: this.course,
-            modules: this.course.modules,
+            course: {},
+            modules: [],
             currentLessons: [],
             currentTopics: [],
             moduleNewTitle: '',
@@ -93,6 +92,14 @@ export default class CourseEditor extends React.Component {
             },
         }
 
+        this.courseService.findCourseById(courseId)
+            .then(response => {
+                console.log(response);
+                this.setState({
+                    course: response,
+                    modules: response.modules
+                })
+            });
         this.widgetService.findAllWidgets().then(response => this.setState({widgets: response}));
     }
 
@@ -403,9 +410,9 @@ export default class CourseEditor extends React.Component {
 
     updateCourse = () => {
         let updatedCourse = {
-            id: this.course.id,
-            title: this.course.title,
-            modifiedAt: this.course.modifiedAt,
+            id: this.state.course.id,
+            title: this.state.course.title,
+            modifiedAt: this.state.course.modifiedAt,
         }
         this.props.updateCourse(updatedCourse.id, updatedCourse);
     }

@@ -48,6 +48,20 @@ export default class TopicService {
         })
     }
 
+    addTopicUnderLesson = (lessonId, topicId) => {
+        const updateTopicUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/lessons/LESSON_ID/topics/TOPIC_ID"
+            .replace('LESSON_ID', lessonId)
+            .replace('TOPIC_ID', topicId);
+        return fetch(updateTopicUrl, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.json();
+        })
+    }
+
     deleteTopic = id => {
         const deleteTopicUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/topics/USER_ID".replace('USER_ID', id);
         return fetch(deleteTopicUrl, {

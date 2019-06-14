@@ -48,6 +48,20 @@ export default class ModuleService {
         })
     }
 
+    addLessonUnderModule = (moduleId, lessonId) => {
+        const updateModuleUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/modules/MODULE_ID/lessons/LESSON_ID"
+            .replace('MODULE_ID', moduleId)
+            .replace('LESSON_ID', lessonId);
+        return fetch(updateModuleUrl, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.json();
+        })
+    }
+
     deleteModule = id => {
         const deleteModuleUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/modules/USER_ID".replace('USER_ID', id);
         return fetch(deleteModuleUrl, {

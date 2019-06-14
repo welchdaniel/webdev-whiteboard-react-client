@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetListContainer from '../containers/WidgetListContainer';
 import CourseService from '../services/CourseService';
 import ModuleService from '../services/ModuleService';
+import LessonService from '../services/LessonService';
+import TopicService from '../services/TopicService';
 import WidgetService from '../services/WidgetService';
 import WidgetReducer from '../reducers/WidgetReducer';
 import {Provider} from 'react-redux';
@@ -21,6 +23,8 @@ export default class CourseEditor extends React.Component {
         super(props)
         this.courseService = CourseService.getInstance();
         this.moduleService = ModuleService.getInstance();
+        this.lessonService = LessonService.getInstance();
+        this.topicService = TopicService.getInstance();
         this.widgetService = WidgetService.getInstance();
         const pathName = window.location.pathname;
         const paths = pathName.split("/")
@@ -102,7 +106,6 @@ export default class CourseEditor extends React.Component {
         this.widgetService.findAllWidgets().then(response => this.setState({widgets: response}));
     }
 
-    //done
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
         this.moduleService.createModule(this.state.addedModule).then(response => {
@@ -118,7 +121,6 @@ export default class CourseEditor extends React.Component {
         })
     }
 
-    //done
     createLesson = () => {
         this.state.addedLesson.title = this.state.addedLesson.title == '' ? 'New Lesson' : this.state.addedLesson.title;
         if (this.state.selectedModule !== undefined) {
@@ -137,7 +139,6 @@ export default class CourseEditor extends React.Component {
         }
     }
 
-    //done
     createTopic = () => {
         this.state.addedTopic.title = this.state.addedTopic.title == '' ? 'New Topic' : this.state.addedTopic.title;
         if (this.state.selectedLesson !== undefined) {
@@ -195,7 +196,6 @@ export default class CourseEditor extends React.Component {
         })
     }
 
-    //done
     titleChanged = (event) => {
         this.setState({
             addedModule: {
@@ -206,7 +206,6 @@ export default class CourseEditor extends React.Component {
         })
     }
 
-    //done
     tabTitleChanged = (event) => {
         this.setState({
             addedLesson: {
@@ -217,7 +216,6 @@ export default class CourseEditor extends React.Component {
         })
     }
 
-    //done
     pillTitleChanged = (event) => {
         this.setState({
             addedTopic: {

@@ -25,7 +25,6 @@ export default class CourseEditor extends React.Component {
         const pathName = window.location.pathname;
         const paths = pathName.split("/")
         const courseId = paths[3];
-        //this.course = this.courses.find(course => course.id == courseId);
         this.state = {
             widgets: [],
             courseId: courseId,
@@ -106,11 +105,8 @@ export default class CourseEditor extends React.Component {
     //done
     createModule = () => {
         this.state.addedModule.title = this.state.addedModule.title == '' ? 'New Module' : this.state.addedModule.title;
-        //this.state.modules.push(this.state.addedModule)
-        //this.state.course.modules = this.state.modules;
-        //this.selectModule(this.state.addedModule);
         this.moduleService.createModule(this.state.addedModule).then(response => {
-            this.courseService.addModuleUnderCourse(this.course.id, response.id)
+            this.courseService.addModuleUnderCourse(this.state.course.id, response.id)
                 .then(response => {
                     this.setState({
                         modules: response.modules,

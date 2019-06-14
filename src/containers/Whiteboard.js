@@ -14,7 +14,7 @@ export default class Whiteboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            courses: initialCourses,
+            courses: [],
             selectedCourse: initialCourses[0],
             navExpanded: false,
             addedCourse: {
@@ -24,6 +24,9 @@ export default class Whiteboard extends React.Component {
                 modules: []
             }
         }
+        courseService.findAllCourses().then(response => {this.setState({
+            courses: response
+        })})
     }
 
     selectCourse = course => this.setState({selectedCourse:course})

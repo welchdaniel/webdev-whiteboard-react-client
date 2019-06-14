@@ -15,47 +15,51 @@ export default class CourseService {
     }
 
     createCourse = course => {
-        this.coursesJSON.push(course)
-        return this.coursesJSON;
+        return fetch("https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses", {
+            method: 'POST',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response =>response.json()) 
     }
      
     findAllCourses = () => {
-        return this.coursesJSON;
+        return fetch("https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses")
+            .then(function(response) {return response.json();})
     }
 
     findCourseById = id => {
-        const foundCourse = this.coursesJSON.find(course => course.id === id);
-        if (foundCourse == undefined) {
-            console.log("Could not find course with id " + id);
-            return;
-        }
-
-        return foundCourse;
+        const findCourseUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses/USER_ID".replace('USER_ID', id);
+        return fetch(findCourseUrl, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.json();
+        })
     }
 
     updateCourse = (id, course) => {
-        let temp = [];
-        var crs = {};
-        for(var i = 0; i < this.coursesJSON.length; i++) {
-            if(this.coursesJSON[i].id == id) {
-                crs = {
-                    id: course.id,
-                    title: course.title,
-                    modifiedAt: course.modifiedAt,
-                    modules: course.modules
-                }
-                temp.push(crs);
+        const updateCourseUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses/USER_ID".replace('USER_ID', id);
+        return fetch(updateCourseUrl, {
+            method: 'PUT',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
             }
-            else {
-                temp.push(this.coursesJSON[i]);
-            }
-        }
-        this.coursesJSON = temp;
-        return this.coursesJSON;
+        }).then(function(response) {
+            return response.json();
+        })
     }
 
     deleteCourse = id => {
-        this.coursesJSON = this.coursesJSON.filter(crs => crs.id !== id);
-        return this.coursesJSON;
+        const deleteCourseUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses/USER_ID".replace('USER_ID', id);
+        return fetch(deleteCourseUrl, {
+            method: 'DELETE'
+        }).then(function(response) {
+            return response.json();
+        })
     }
 }

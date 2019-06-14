@@ -7,6 +7,7 @@ import { Navbar, Nav, Button, Form, Dropdown } from 'react-bootstrap';
 import { faTimes, faPlus, faTrashAlt, faEdit, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetListContainer from '../containers/WidgetListContainer';
+import CourseService from '../services/CourseService';
 import ModuleService from '../services/ModuleService';
 import WidgetService from '../services/WidgetService';
 import WidgetReducer from '../reducers/WidgetReducer';
@@ -23,6 +24,7 @@ export default class CourseEditor extends React.Component {
         const courseId = paths[3];
         this.courses = props.courses;
         this.course = this.courses.find(course => course.id == courseId);
+        this.courseService = CourseService.getInstance();
         this.moduleService = ModuleService.getInstance();
         this.widgetService = WidgetService.getInstance();
         this.state = {
@@ -101,13 +103,16 @@ export default class CourseEditor extends React.Component {
         //this.state.course.modules = this.state.modules;
         //this.selectModule(this.state.addedModule);
         this.moduleService.createModule(this.state.addedModule).then(response => {
-            this.setState({
-                modules: response,
-                addedModule: {
-                    title: ''
-                }
-            })
-        })   
+            this.courseService.addModuleUnderCourse(this.course.id, response.id)
+                .then(response => {
+                    this.setState({
+                        modules: response.modules,
+                        addedModule: {
+                            title: ''
+                        }
+                    })
+                })
+        })
     }
 
     //done

@@ -54,6 +54,20 @@ export default class CourseService {
         })
     }
 
+    addModuleUnderCourse = (courseId, moduleId) => {
+        const updateCourseUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses/COURSE_ID/modules/MODULE_ID"
+            .replace('COURSE_ID', courseId)
+            .replace('MODULE_ID', moduleId);
+        return fetch(updateCourseUrl, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.json();
+        })
+    }
+
     deleteCourse = id => {
         const deleteCourseUrl = "https://webdev-su19-dwelch-server-java.herokuapp.com/api/courses/USER_ID".replace('USER_ID', id);
         return fetch(deleteCourseUrl, {

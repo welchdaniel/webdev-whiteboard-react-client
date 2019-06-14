@@ -386,18 +386,19 @@ export default class CourseEditor extends React.Component {
     }
 
     updateModule = () => {
-        let newModules = this.state.modules.map(mod => {
-            if(mod.id == this.state.selectedModule.id) {
-                mod.title = this.state.selectedModule.title;
-                mod.lessons = this.state.currentLessons;
-            }
-            return mod;
-        })
-        this.setState({
-            modules: newModules
-        },
-            () => this.updateCourse()
-        )
+        this.moduleService.updateModule(this.state.selectedModule.id, this.state.selectedModule)
+            .then(() => 
+                this.courseService.addModuleUnderCourse(this.state.course.id, this.state.selectedModule.id)
+                    .then(() => {
+                        this.courseService.findCourseById(this.state.course.id)
+                            .then(response => {
+                                this.setState({
+                                    modules: response.modules
+                                },
+                                () => this.updateCourse())
+                            })
+                    })
+            )
     }
 
     setEditorNavExpanded = (expanded) => {

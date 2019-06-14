@@ -67,10 +67,11 @@ export default class Whiteboard extends React.Component {
     }
 
     updateCourse = (id, course) => {
-        courseService.updateCourse(id, course);
-        this.setState({
-            courses: courseService.findAllCourses()
-        })
+        courseService.updateCourse(id, course).then(response => {
+            console.log(response)
+            this.setState({
+            courses: response
+        })})
     }
 
     getModificationTime = () => {
